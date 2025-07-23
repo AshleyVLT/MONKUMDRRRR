@@ -1,0 +1,3 @@
+# MANGEMONUK THE NEW WAY FOR PEOPLE TO EAT YOUR ASS AND SEE YOUR LINK
+
+damn that's a nice sentance 
