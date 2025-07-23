@@ -90,10 +90,16 @@
             max-width: 900px;
             width: 100%;
             display: flex;
-            gap: 50px;
-            align-items: center;
+            flex-direction: column;
+            gap: 25px;
             position: relative;
             animation: cardGlow 6s ease-in-out infinite;
+        }
+
+        .card-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
         }
 
         @keyframes cardGlow {
@@ -256,10 +262,13 @@
         }
 
         @media (max-width: 768px) {
-            .card {
+            .card-content {
                 flex-direction: column;
-                padding: 30px 25px;
                 gap: 25px;
+            }
+            
+            .card {
+                padding: 30px 25px;
                 max-width: 400px;
             }
             
@@ -336,50 +345,66 @@
                 transform: translateX(0);
             }
         }
+
+        .footer-text {
+            font-size: 11px;
+            color: rgba(139, 90, 131, 0.6);
+            text-align: center;
+            margin-top: 25px;
+            font-style: italic;
+            line-height: 1.3;
+            max-width: 100%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="card">
-            <div class="profile-section">
-                <div class="avatar">
-                    <img src="https://cdn.discordapp.com/avatars/785231157926559785/f4b3468abb8d7cf41afb37658cc040e0.png?size=1024" alt="Ashley's Avatar">
+            <div class="card-content">
+                <div class="profile-section">
+                    <div class="avatar">
+                        <img src="https://cdn.discordapp.com/avatars/785231157926559785/f4b3468abb8d7cf41afb37658cc040e0.png?size=1024" alt="Ashley's Avatar">
+                    </div>
+                    <div class="username">Ashley</div>
+                    <div class="pronouns">She/Her</div>
+                    <div class="bio">Du coup ça veut mangée mon cu? bizarre un peu les reuf</div>
                 </div>
-                <div class="username">Ashley</div>
-                <div class="pronouns">She/Her</div>
-                <div class="bio">Du coup ça veut mangée mon cu? bizarre un peu les reuf</div>
+                
+                <div class="links-container">
+                    <a href="https://bsky.app/profile/ashleyvlt.bsky.social" class="link-item" target="_blank">
+                        <div class="link-icon icon-bluesky"></div>
+                        <span>Bluesky</span>
+                    </a>
+                    
+                    <a href="https://www.twitch.tv/ashleyvltr" class="link-item" target="_blank">
+                        <div class="link-icon icon-twitch"></div>
+                        <span>Twitch</span>
+                    </a>
+                    
+                    <a href="https://discord.gg/h4CM7SMb" class="link-item" target="_blank">
+                        <div class="link-icon icon-discord"></div>
+                        <span>Discord</span>
+                    </a>
+                    
+                    <a href="https://github.com/AshleyVLT" class="link-item" target="_blank">
+                        <div class="link-icon icon-github"></div>
+                        <span>GitHub</span>
+                    </a>
+                    
+                    <a href="https://steamcommunity.com/id/AshleyVLT/" class="link-item" target="_blank">
+                        <div class="link-icon icon-steam"></div>
+                        <span>Steam</span>
+                    </a>
+                    
+                    <a href="https://vapr.club/@ashleyvlt" class="link-item" target="_blank">
+                        <div class="link-icon icon-vapr"></div>
+                        <span>VAPR</span>
+                    </a>
+                </div>
             </div>
             
-            <div class="links-container">
-                <a href="https://bsky.app/profile/ashleyvlt.bsky.social" class="link-item" target="_blank">
-                    <div class="link-icon icon-bluesky"></div>
-                    <span>Bluesky</span>
-                </a>
-                
-                <a href="https://www.twitch.tv/ashleyvltr" class="link-item" target="_blank">
-                    <div class="link-icon icon-twitch"></div>
-                    <span>Twitch</span>
-                </a>
-                
-                <a href="https://discord.gg/h4CM7SMb" class="link-item" target="_blank">
-                    <div class="link-icon icon-discord"></div>
-                    <span>Discord</span>
-                </a>
-                
-                <a href="https://github.com/AshleyVLT" class="link-item" target="_blank">
-                    <div class="link-icon icon-github"></div>
-                    <span>GitHub</span>
-                </a>
-                
-                <a href="https://steamcommunity.com/id/AshleyVLT/" class="link-item" target="_blank">
-                    <div class="link-icon icon-steam"></div>
-                    <span>Steam</span>
-                </a>
-                
-                <a href="https://vapr.club/@ashleyvlt" class="link-item" target="_blank">
-                    <div class="link-icon icon-vapr"></div>
-                    <span>VAPR</span>
-                </a>
+            <div class="footer-text">
+                j'encule les UK et leur court supréme de con, jk rowling aussi cette conne, juste enfaite le jeux de mot fonctionne uniquement avec le .uk
             </div>
         </div>
     </div>
