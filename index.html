@@ -243,11 +243,16 @@
         }
         .icon-steam::before { content: "🎮"; }
 
-        /* Grid pour la cinquième icône */
-        .links-container .link-item:nth-child(5) {
-            grid-column: 1 / -1;
-            justify-self: center;
-            max-width: 280px;
+        .icon-vapr { 
+            background: linear-gradient(135deg, #FF6B6B, #ee5a52);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        .icon-vapr::before { content: "💨"; }
+
+        /* Grid pour Steam et VAPR sur la troisième ligne */
+        .links-container .link-item:nth-child(5),
+        .links-container .link-item:nth-child(6) {
+            grid-column: auto;
         }
 
         @media (max-width: 768px) {
@@ -262,7 +267,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .links-container .link-item:nth-child(5) {
+            .links-container .link-item:nth-child(5),
+            .links-container .link-item:nth-child(6) {
                 grid-column: 1;
                 justify-self: stretch;
                 max-width: none;
@@ -277,6 +283,10 @@
             .card {
                 padding: 25px 20px;
                 margin: 10px;
+            }
+            
+            .links-container {
+                grid-template-columns: 1fr !important;
             }
             
             .bio {
@@ -314,6 +324,7 @@
         .link-item:nth-child(3) { animation-delay: 0.3s; }
         .link-item:nth-child(4) { animation-delay: 0.4s; }
         .link-item:nth-child(5) { animation-delay: 0.5s; }
+        .link-item:nth-child(6) { animation-delay: 0.6s; }
 
         @keyframes fadeInLinks {
             from {
@@ -363,6 +374,11 @@
                 <a href="https://steamcommunity.com/id/AshleyVLT/" class="link-item" target="_blank">
                     <div class="link-icon icon-steam"></div>
                     <span>Steam</span>
+                </a>
+                
+                <a href="https://vapr.club/@ashleyvlt" class="link-item" target="_blank">
+                    <div class="link-icon icon-vapr"></div>
+                    <span>VAPR</span>
                 </a>
             </div>
         </div>
