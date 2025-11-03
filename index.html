@@ -9,16 +9,11 @@
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            
-            // Debug: Vérifier si Clarity se charge
-            t.onload = function() {
-                console.log('✅ Microsoft Clarity chargé avec succès!');
-            };
-            t.onerror = function() {
-                console.error('❌ Erreur de chargement de Microsoft Clarity');
-            };
+            var t=l.createElement(r);
+            t.async=1;
+            t.src="https://www.clarity.ms/tag/"+i;
+            var y=l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "u0bk02ylcj");
     </script>
     
@@ -478,6 +473,36 @@
                 transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
+        }
+
+        /* Mode Zen - Transition douce */
+        body.zen-mode {
+            background: url('https://external-preview.redd.it/r6g38aXSaQWtd1KxwJbQ-Fs5jtSVDxX3wtLHJEdqixw.jpg?auto=webp&s=fdee18de73d4f642ccc323470e044ed0f1bae7ea') center/cover no-repeat fixed !important;
+            transition: background 0.5s ease;
+        }
+
+        body.zen-mode .window {
+            border-color: #0066CC !important;
+            box-shadow: 0 0 0 1px #003d7a, 2px 2px 8px rgba(0,0,0,.5) !important;
+        }
+
+        body.zen-mode .title-bar,
+        body.zen-mode .music-toggle {
+            background: linear-gradient(180deg, #4488FF 0%, #0066CC 8%, #0055BB 40%, #0066CC 88%, #0066CC 93%, #0055BB 95%, #003d7a 100%) !important;
+        }
+
+        body.zen-mode .media-player {
+            border-color: #0066CC !important;
+            box-shadow: 0 0 0 1px #003d7a, 2px 2px 8px rgba(0,0,0,.5) !important;
+        }
+
+        body.zen-mode .player-bar {
+            background: linear-gradient(180deg, #4488FF 0%, #0066CC 8%, #0055BB 40%, #0066CC 88%) !important;
+        }
+
+        body.zen-mode .track-title {
+            color: #00CC66 !important;
+            font-weight: bold;
         }
 
         /* Nametag Minecraft pour le chat */
@@ -1061,11 +1086,17 @@
             }
         });
 
-        // Gestion de la commande secrète Ctrl+M
+        // Gestion des commandes secrètes
         document.addEventListener('keydown', function(e) {
+            // Ctrl+M : Nommer le chat
             if (e.ctrlKey && e.key === 'm') {
                 e.preventDefault();
                 openNamePopup();
+            }
+            // Ctrl+Z : Mode Zen
+            if (e.ctrlKey && e.key === 'z') {
+                e.preventDefault();
+                toggleZenMode();
             }
         });
 
@@ -1113,6 +1144,52 @@
         document.getElementById('namePopup').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeNamePopup();
+            }
+        });
+
+        // ===== MODE ZEN =====
+        let isZenMode = false;
+
+        // Toggle Mode Zen
+        function toggleZenMode() {
+            isZenMode = !isZenMode;
+            
+            if (isZenMode) {
+                // Activer le mode zen
+                document.body.classList.add('zen-mode');
+                localStorage.setItem('zenMode', 'true');
+                
+                // Charger Laufey automatiquement (piste 3, index 2)
+                loadTrack(2);
+                if (a.paused) {
+                    a.play();
+                    p.textContent = '⏸️';
+                }
+                
+                console.log('🧘‍♀️ Mode Zen activé - Laufey en cours...');
+            } else {
+                // Désactiver le mode zen
+                document.body.classList.remove('zen-mode');
+                localStorage.setItem('zenMode', 'false');
+                
+                console.log('🔴 Mode Zen désactivé');
+            }
+        }
+
+        // Charger le mode zen au démarrage
+        window.addEventListener('load', function() {
+            const savedZenMode = localStorage.getItem('zenMode');
+            if (savedZenMode === 'true') {
+                isZenMode = true;
+                document.body.classList.add('zen-mode');
+                
+                // Charger Laufey automatiquement
+                setTimeout(() => {
+                    loadTrack(2);
+                    a.play().catch(() => {
+                        p.textContent = '▶️';
+                    });
+                }, 500);
             }
         });
     </script>
