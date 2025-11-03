@@ -921,11 +921,23 @@
         // Déplacement des fenêtres
         function makeDraggable(win, bar) {
             let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            let isDragging = false;
             
             bar.onmousedown = dragMouseDown;
 
             function dragMouseDown(e) {
                 e.preventDefault();
+                
+                // Au premier drag, retirer bottom/right et convertir en top/left
+                if (!isDragging) {
+                    const rect = win.getBoundingClientRect();
+                    win.style.top = rect.top + "px";
+                    win.style.left = rect.left + "px";
+                    win.style.bottom = "auto";
+                    win.style.right = "auto";
+                    isDragging = true;
+                }
+                
                 pos3 = e.clientX;
                 pos4 = e.clientY;
                 document.onmouseup = closeDragElement;
