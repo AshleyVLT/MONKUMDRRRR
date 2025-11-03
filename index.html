@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sans pelle et grino prime</title>
+    <title>Ashley - Windows XP</title>
     <style>
         * {
             margin: 0;
@@ -433,6 +433,24 @@
             .title-bar-text { font-size: 10px; }
             .media-player { width: 90%; right: 5%; bottom: 80px; }
         }
+
+        /* Flocons de neige roses */
+        .snowflake {
+            position: fixed;
+            color: #FFB6C1;
+            font-size: 1em;
+            pointer-events: none;
+            z-index: 10000;
+            animation: fall linear forwards;
+            text-shadow: 0 0 5px rgba(255, 182, 193, 0.8);
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -451,7 +469,7 @@
         <div class="window-content">
             <div class="profile-header">
                 <div class="avatar-container">
-                    <img src="https://i.pinimg.com/736x/8d/1f/f0/8d1ff07d1d28c73a55ddf5e1fd80aaa7.jpg" alt="Ashley" class="avatar">
+                    <img src="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif" alt="Ashley" class="avatar">
                 </div>
                 <div class="username">Ashley</div>
                 <div class="pronouns">She/Her</div>
@@ -678,6 +696,34 @@
 
         makeDraggable(document.getElementById('mainWindow'), document.getElementById('titleBar'));
         makeDraggable(document.getElementById('mediaPlayer'), document.getElementById('playerBar'));
+
+        // Flocons de neige roses qui suivent la souris
+        document.addEventListener('mousemove', (e) => {
+            createSnowflake(e.clientX, e.clientY);
+        });
+
+        function createSnowflake(x, y) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.textContent = '❄';
+            snowflake.style.left = x + 'px';
+            snowflake.style.top = y + 'px';
+            
+            // Durée aléatoire pour la chute
+            const duration = Math.random() * 2 + 2;
+            snowflake.style.animationDuration = duration + 's';
+            
+            // Taille aléatoire
+            const size = Math.random() * 0.5 + 0.8;
+            snowflake.style.fontSize = size + 'em';
+            
+            document.body.appendChild(snowflake);
+            
+            // Supprimer le flocon après l'animation
+            setTimeout(() => {
+                snowflake.remove();
+            }, duration * 1000);
+        }
     </script>
 </body>
 </html>
