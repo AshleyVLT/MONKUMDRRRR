@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashley - Windows XP</title>
+    <title>Sans pelle et grino prime</title>
     <style>
         * {
             margin: 0;
@@ -352,8 +352,9 @@
         .player-controls {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             margin-bottom: 10px;
+            justify-content: center;
         }
 
         .control-btn {
@@ -370,6 +371,13 @@
         .control-btn:active {
             background: linear-gradient(180deg, #C5C2B8 0%, #E2DFD5 14%, #F1F0E9 100%);
             box-shadow: inset -1px -1px 0 #DFDED6, inset 1px 1px 0 #888;
+        }
+
+        .volume-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
         .volume-slider { flex: 1; height: 20px; }
@@ -518,12 +526,16 @@
         </div>
         <div class="player-content">
             <div class="track-info">
-                <div class="track-title">slxughter - envy</div>
+                <div class="track-title" id="trackTitle">slxughter - envy</div>
                 <div class="track-time"><span id="currentTime">0:00</span> / <span id="duration">0:00</span></div>
             </div>
             <div class="player-controls">
+                <button class="control-btn" onclick="previousTrack()">⏮️</button>
                 <button class="control-btn" onclick="playPause()" id="playBtn">⏸️</button>
                 <button class="control-btn" onclick="stopMusic()">⏹️</button>
+                <button class="control-btn" onclick="nextTrack()">⏭️</button>
+            </div>
+            <div class="volume-controls">
                 <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
                 <span class="volume-label">🔊</span>
             </div>
@@ -534,7 +546,7 @@
     </div>
 
     <button class="music-toggle" onclick="togglePlayer()">🎵</button>
-    <audio id="audioPlayer" loop src="https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/music.mp3"></audio>
+    <audio id="audioPlayer" src="https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/music.mp3"></audio>
 
     <script>
         const a = document.getElementById('audioPlayer');
@@ -544,8 +556,46 @@
         const c = document.getElementById('currentTime');
         const d = document.getElementById('duration');
         const m = document.getElementById('mediaPlayer');
+        const trackTitle = document.getElementById('trackTitle');
+
+        // Playlist
+        const playlist = [
+            { title: 'slxughter - envy', src: 'https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/music.mp3' },
+            { title: 'Hatsune Miku - Miku', src: 'https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/music2.mp3' },
+            { title: 'Laufey - Lover Girl', src: 'https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/music3.mp3' }
+        ];
+        let currentTrack = 0;
 
         a.volume = 0.7;
+
+        // Charger une piste
+        function loadTrack(index) {
+            const track = playlist[index];
+            a.src = track.src;
+            trackTitle.textContent = track.title;
+            currentTrack = index;
+        }
+
+        // Piste suivante
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % playlist.length;
+            loadTrack(currentTrack);
+            a.play();
+            p.textContent = '⏸️';
+        }
+
+        // Piste précédente
+        function previousTrack() {
+            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrack);
+            a.play();
+            p.textContent = '⏸️';
+        }
+
+        // Passer à la suivante automatiquement à la fin
+        a.addEventListener('ended', () => {
+            nextTrack();
+        });
 
         // Auto-play la musique
         window.addEventListener('load', () => {
