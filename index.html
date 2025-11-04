@@ -32,6 +32,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            padding-bottom: 60px; /* Espace pour la taskbar */
         }
 
         .window {
@@ -137,11 +138,30 @@
             object-fit: cover;
         }
 
+        .username-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
         .username {
             font-size: 16px;
             font-weight: bold;
             color: #000080;
-            margin-bottom: 5px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 4px;
+        }
+
+        .badge {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
         }
 
         .pronouns {
@@ -691,6 +711,226 @@
                 transform: translate(-50%, -50%) scale(1);
             }
         }
+
+        /* Taskbar Windows XP */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(180deg, #245EDC 0%, #3F8CF3 9%, #245EDC 18%, #1941A5 92%, #1941A5 93%, #1434A0 95%, #10298F 100%);
+            border-top: 2px solid #5A8EEC;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            z-index: 999999;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+        }
+
+        .start-button {
+            height: 32px;
+            padding: 0 12px 0 8px;
+            background: linear-gradient(180deg, #6BBF5A 0%, #4FA83D 50%, #3C8C2A 100%);
+            border: 1px solid;
+            border-color: #AEE89D #1E5C13 #1E5C13 #AEE89D;
+            border-radius: 4px 4px 2px 2px;
+            font-weight: bold;
+            font-size: 11px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            margin-right: 8px;
+        }
+
+        .start-button:hover {
+            background: linear-gradient(180deg, #7DD968 0%, #5AB849 50%, #469536 100%);
+        }
+
+        .start-button:active {
+            background: linear-gradient(180deg, #3C8C2A 0%, #4FA83D 50%, #6BBF5A 100%);
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .start-icon {
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+        }
+
+        .taskbar-items {
+            display: flex;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .taskbar-item {
+            height: 32px;
+            min-width: 140px;
+            max-width: 200px;
+            padding: 0 8px;
+            background: linear-gradient(180deg, #3F8CF3 0%, #2373E8 50%, #1941A5 100%);
+            border: 1px solid;
+            border-color: #5A8EEC #1434A0 #1434A0 #5A8EEC;
+            border-radius: 2px;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .taskbar-item:hover {
+            background: linear-gradient(180deg, #4E9BFF 0%, #2E7FF5 50%, #1E4EB8 100%);
+        }
+
+        .taskbar-item.active {
+            background: linear-gradient(180deg, #1941A5 0%, #2373E8 50%, #3F8CF3 100%);
+            border-color: #1434A0 #5A8EEC #5A8EEC #1434A0;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .taskbar-item-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .taskbar-clock {
+            height: 32px;
+            padding: 0 12px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%);
+            border: 1px solid;
+            border-color: #1434A0 #5A8EEC #5A8EEC #1434A0;
+            border-radius: 2px;
+            color: white;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+        }
+
+        /* Fenêtre minimisée */
+        .window.minimized {
+            display: none !important;
+        }
+
+        .media-player.minimized {
+            display: none !important;
+        }
+
+        /* Fenêtre Paramètres */
+        .settings-window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            background: #ECE9D8;
+            border: 3px solid #0054E3;
+            box-shadow: 0 0 0 1px #003C8F, 4px 4px 10px rgba(0,0,0,.5);
+            z-index: 100000;
+            display: none;
+        }
+
+        .settings-window.show {
+            display: block;
+            animation: windowOpen 0.3s ease-out;
+        }
+
+        .settings-title-bar {
+            background: linear-gradient(180deg, #0997FF 0%, #0053EE 8%, #0050E1 40%, #0053EE 88%);
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 28px;
+        }
+
+        .settings-title {
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+        }
+
+        .settings-content {
+            padding: 20px;
+        }
+
+        .settings-section {
+            margin-bottom: 20px;
+        }
+
+        .settings-section h3 {
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: #000080;
+        }
+
+        .settings-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .settings-option label {
+            font-size: 11px;
+            flex: 1;
+        }
+
+        .settings-select {
+            padding: 4px;
+            border: 2px solid;
+            border-color: #808080 #FFF #FFF #808080;
+            background: white;
+            font-size: 11px;
+        }
+
+        .color-picker {
+            width: 50px;
+            height: 30px;
+            border: 2px solid;
+            border-color: #808080 #FFF #FFF #808080;
+            cursor: pointer;
+        }
+
+        /* Effets d'arrière-plan */
+        .comet {
+            position: fixed;
+            width: 3px;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, white);
+            pointer-events: none;
+            z-index: 1;
+            animation: cometFall linear forwards;
+        }
+
+        @keyframes cometFall {
+            to {
+                transform: translateY(100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .settings-icon {
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0 8px;
+        }
     </style>
 </head>
 <body>
@@ -700,9 +940,8 @@
                 <div class="title-bar-icon"></div>
             </div>
             <div class="title-bar-controls">
-                <button class="title-bar-button minimize"></button>
+                <button class="title-bar-button minimize" onclick="minimizeWindow('mainWindow')"></button>
                 <button class="title-bar-button maximize"></button>
-                <button class="title-bar-button close"></button>
             </div>
         </div>
 
@@ -711,7 +950,12 @@
                 <div class="avatar-container">
                     <img src="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif" alt="Ashley" class="avatar">
                 </div>
-                <div class="username">Ashley</div>
+                <div class="username-container">
+                    <div class="username">Ashley</div>
+                    <div class="badges">
+                        <img src="https://cdn-icons-png.freepik.com/512/17460/17460216.png" alt="Verified" class="badge" title="Verified">
+                    </div>
+                </div>
                 <div class="pronouns">She/Her</div>
                 <div class="bio">Du coup ça veut mangée mon cu? bizarre un peu les reuf</div>
             </div>
@@ -780,7 +1024,7 @@
     <div class="media-player" id="mediaPlayer">
         <div class="player-bar" id="playerBar">
             <div class="player-title">🎵 Windows Media Player</div>
-            <button class="player-close" onclick="togglePlayer()">✕</button>
+            <button class="player-close" onclick="minimizeWindow('mediaPlayer')" style="background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 86%, #C5C2B8 100%);">🗕</button>
         </div>
         <div class="player-content">
             <div class="track-info">
@@ -835,6 +1079,59 @@
         <div class="xp-popup-content">
             <img src="https://i.imgur.com/5gzStd7.png" alt="Notification">
         </div>
+    </div>
+
+    <!-- Fenêtre Paramètres -->
+    <div class="settings-window" id="settingsWindow">
+        <div class="settings-title-bar">
+            <div class="settings-title">⚙️ Paramètres</div>
+            <button class="xp-popup-close" onclick="closeSettings()">✕</button>
+        </div>
+        <div class="settings-content">
+            <div class="settings-section">
+                <h3>🎨 Couleur des flocons</h3>
+                <div class="settings-option">
+                    <label>Couleur :</label>
+                    <input type="color" id="snowflakeColor" class="color-picker" value="#FFB6C1">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>✨ Effets d'arrière-plan</h3>
+                <div class="settings-option">
+                    <label>Effet :</label>
+                    <select id="backgroundEffect" class="settings-select">
+                        <option value="none">Aucun</option>
+                        <option value="snowflakes">Flocons de neige</option>
+                        <option value="comets">Comètes</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label>Couleur de l'effet :</label>
+                    <input type="color" id="effectColor" class="color-picker" value="#FFFFFF">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar Windows XP -->
+    <div class="taskbar">
+        <div class="start-button">
+            <span style="font-size: 18px;">🪟</span>
+            <span>Start</span>
+        </div>
+        <div class="taskbar-items">
+            <div class="taskbar-item active" id="taskbar-mainWindow" onclick="toggleWindow('mainWindow')">
+                <span class="taskbar-item-icon">📁</span>
+                <span>Ashley - Profil</span>
+            </div>
+            <div class="taskbar-item active" id="taskbar-mediaPlayer" onclick="toggleWindow('mediaPlayer')">
+                <span class="taskbar-item-icon">🎵</span>
+                <span>Windows Media Player</span>
+            </div>
+        </div>
+        <div class="settings-icon" onclick="toggleSettings()" title="Paramètres">⚙️</div>
+        <div class="taskbar-clock" id="taskbarClock">12:00</div>
     </div>
 
     <script>
@@ -1288,6 +1585,188 @@
         setTimeout(() => {
             showXPPopup();
         }, 60000);
+
+        // ===== GESTION DES FENÊTRES ET TASKBAR =====
+        // Minimiser une fenêtre
+        function minimizeWindow(windowId) {
+            const win = document.getElementById(windowId);
+            const taskbarItem = document.getElementById('taskbar-' + windowId);
+            
+            win.classList.add('minimized');
+            taskbarItem.classList.remove('active');
+        }
+
+        // Fermer une fenêtre (la masque complètement)
+        function closeWindow(windowId) {
+            const win = document.getElementById(windowId);
+            const taskbarItem = document.getElementById('taskbar-' + windowId);
+            
+            win.classList.add('minimized');
+            taskbarItem.style.display = 'none';
+        }
+
+        // Toggle une fenêtre depuis la taskbar
+        function toggleWindow(windowId) {
+            const win = document.getElementById(windowId);
+            const taskbarItem = document.getElementById('taskbar-' + windowId);
+            
+            if (win.classList.contains('minimized')) {
+                // Restaurer la fenêtre
+                win.classList.remove('minimized');
+                taskbarItem.classList.add('active');
+                taskbarItem.style.display = 'flex';
+            } else {
+                // Minimiser la fenêtre
+                win.classList.add('minimized');
+                taskbarItem.classList.remove('active');
+            }
+        }
+
+        // Mettre à jour l'horloge de la taskbar
+        function updateClock() {
+            const clock = document.getElementById('taskbarClock');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            clock.textContent = `${hours}:${minutes}`;
+        }
+
+        // Mettre à jour l'horloge toutes les secondes
+        setInterval(updateClock, 1000);
+        updateClock(); // Initialiser l'horloge
+
+        // ===== PARAMÈTRES =====
+        // Toggle fenêtre paramètres
+        function toggleSettings() {
+            const settingsWin = document.getElementById('settingsWindow');
+            settingsWin.classList.toggle('show');
+        }
+
+        // Fermer paramètres
+        function closeSettings() {
+            document.getElementById('settingsWindow').classList.remove('show');
+        }
+
+        // Charger les paramètres depuis localStorage
+        function loadSettings() {
+            const snowflakeColor = localStorage.getItem('snowflakeColor') || '#FFB6C1';
+            const backgroundEffect = localStorage.getItem('backgroundEffect') || 'none';
+            const effectColor = localStorage.getItem('effectColor') || '#FFFFFF';
+            
+            document.getElementById('snowflakeColor').value = snowflakeColor;
+            document.getElementById('backgroundEffect').value = backgroundEffect;
+            document.getElementById('effectColor').value = effectColor;
+            
+            // Appliquer les effets
+            applyBackgroundEffect(backgroundEffect, effectColor);
+        }
+
+        // Sauvegarder et appliquer la couleur des flocons
+        document.getElementById('snowflakeColor').addEventListener('change', (e) => {
+            localStorage.setItem('snowflakeColor', e.target.value);
+        });
+
+        // Sauvegarder et appliquer l'effet d'arrière-plan
+        document.getElementById('backgroundEffect').addEventListener('change', (e) => {
+            const effect = e.target.value;
+            const color = document.getElementById('effectColor').value;
+            localStorage.setItem('backgroundEffect', effect);
+            applyBackgroundEffect(effect, color);
+        });
+
+        // Sauvegarder et appliquer la couleur de l'effet
+        document.getElementById('effectColor').addEventListener('change', (e) => {
+            const effect = document.getElementById('backgroundEffect').value;
+            localStorage.setItem('effectColor', e.target.value);
+            applyBackgroundEffect(effect, e.target.value);
+        });
+
+        // Variables pour les effets d'arrière-plan
+        let backgroundEffectInterval = null;
+
+        // Appliquer l'effet d'arrière-plan
+        function applyBackgroundEffect(effect, color) {
+            // Arrêter l'effet précédent
+            if (backgroundEffectInterval) {
+                clearInterval(backgroundEffectInterval);
+                backgroundEffectInterval = null;
+            }
+            
+            // Supprimer tous les effets existants
+            document.querySelectorAll('.comet, .snowflake.background-effect').forEach(el => el.remove());
+            
+            if (effect === 'comets') {
+                // Créer des comètes toutes les 3 secondes
+                backgroundEffectInterval = setInterval(() => createComet(color), 3000);
+            } else if (effect === 'snowflakes') {
+                // Créer des flocons de neige toutes les 500ms
+                backgroundEffectInterval = setInterval(() => createBackgroundSnowflake(color), 500);
+            }
+        }
+
+        // Créer une comète
+        function createComet(color) {
+            const comet = document.createElement('div');
+            comet.className = 'comet';
+            comet.style.left = Math.random() * window.innerWidth + 'px';
+            comet.style.top = '-100px';
+            comet.style.background = `linear-gradient(180deg, transparent, ${color})`;
+            
+            const duration = Math.random() * 2 + 1;
+            comet.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(comet);
+            
+            setTimeout(() => comet.remove(), duration * 1000);
+        }
+
+        // Créer un flocon de neige d'arrière-plan
+        function createBackgroundSnowflake(color) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake background-effect';
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.top = '-20px';
+            snowflake.style.color = color;
+            
+            const duration = Math.random() * 3 + 4;
+            snowflake.style.animationDuration = duration + 's';
+            
+            const size = Math.random() * 0.5 + 0.5;
+            snowflake.style.fontSize = size + 'em';
+            
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => snowflake.remove(), duration * 1000);
+        }
+
+        // Modifier la fonction createSnowflake pour utiliser la couleur des paramètres
+        const originalCreateSnowflake = createSnowflake;
+        createSnowflake = function(x, y) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.textContent = '❄';
+            snowflake.style.left = x + 'px';
+            snowflake.style.top = y + 'px';
+            
+            // Utiliser la couleur des paramètres
+            const savedColor = localStorage.getItem('snowflakeColor') || '#FFB6C1';
+            snowflake.style.color = savedColor;
+            snowflake.style.textShadow = `0 0 5px ${savedColor}`;
+            
+            const duration = Math.random() * 2 + 2;
+            snowflake.style.animationDuration = duration + 's';
+            
+            const size = Math.random() * 0.5 + 0.8;
+            snowflake.style.fontSize = size + 'em';
+            
+            document.body.appendChild(snowflake);
+            
+            setTimeout(() => snowflake.remove(), duration * 1000);
+        };
+
+        // Charger les paramètres au démarrage
+        loadSettings();
     </script>
 </body>
 </html>
