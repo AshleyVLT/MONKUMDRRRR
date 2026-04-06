@@ -239,6 +239,12 @@
             border-radius: 2px;
         }
 
+        .letterboxd-icon {
+            background: linear-gradient(135deg, #202830 0%, #14181C 100%);
+            border: 1px solid #0A0C0E;
+            border-radius: 2px;
+        }
+
         /* iPhone Chat Bubble */
         .chat-bubble {
             position: absolute;
@@ -440,6 +446,7 @@
         .link-item-wrapper:nth-child(3) .link-item { animation-delay: 0.2s; }
         .link-item-wrapper:nth-child(4) .link-item { animation-delay: 0.25s; }
         .link-item-wrapper:nth-child(5) .link-item { animation-delay: 0.3s; }
+        .link-item-wrapper:nth-child(6) .link-item { animation-delay: 0.35s; }
 
         @media (max-width: 640px) {
             .window { max-width: 95%; }
@@ -1038,20 +1045,6 @@
             text-align: center;
         }
 
-        /* Logo Windows XP */
-        .xp-logo-img {
-            width: 400px;
-            max-width: 80%;
-            margin-bottom: 40px;
-            animation: logoPulse 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.02); opacity: 1; }
-        }
-
         /* Phase BIOS POST avant le logo */
         .bios-post {
             position: fixed;
@@ -1112,7 +1105,6 @@
 
     <!-- Phase 2: Écran de démarrage Windows XP -->
     <div class="xp-boot-screen hidden" id="xpBootScreen">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_XP_logo_and_wordmark.svg/1200px-Windows_XP_logo_and_wordmark.svg.png" alt="Windows XP" class="xp-logo-img">
         <div class="xp-progress-container">
             <div class="xp-progress-bar">
                 <div class="xp-progress-fill" id="xpProgressFill"></div>
@@ -1195,6 +1187,15 @@
                         <span class="link-text">Fansly</span>
                     </a>
                 </div>
+
+                <div class="link-item-wrapper">
+                    <a href="https://letterboxd.com/AshleyVLT/" class="link-item" target="_blank">
+                        <div class="link-icon letterboxd-icon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Letterboxd_2023_logo.png/250px-Letterboxd_2023_logo.png" alt="Letterboxd" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
+                        </div>
+                        <span class="link-text">Letterboxd</span>
+                    </a>
+                </div>
             </div>
 
             <div class="footer-text">
@@ -1204,7 +1205,7 @@
 
         <div class="status-bar">
             <div class="status-section">Ready</div>
-            <div class="status-section">5 liens</div>
+            <div class="status-section">7 liens</div>
         </div>
     </div>
 
@@ -1236,6 +1237,31 @@
                 <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
                 <span class="volume-label" id="volumeIcon">🔊</span>
             </div>
+        </div>
+    </div>
+
+    <div class="window" id="steamWindow" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 400px; display: none;">
+        <div class="title-bar" id="steamTitleBar">
+            <div class="title-bar-text">
+                <span style="margin-left: 8px;">🎮 Steam Profile</span>
+            </div>
+            <div class="title-bar-controls">
+                <button class="title-bar-button minimize" onclick="minimizeWindow('steamWindow')"></button>
+                <button class="title-bar-button maximize"></button>
+                <button class="title-bar-button close" onclick="closeWindow('steamWindow')"></button>
+            </div>
+        </div>
+        <div class="window-content" style="padding: 20px; text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 15px;">🎮</div>
+            <h3 style="margin: 0 0 10px 0; font-size: 16px;">AshleyVLT</h3>
+            <p style="margin: 0 0 20px 0; font-size: 12px; color: #666;">Steam Profile</p>
+            <a href="https://steamcommunity.com/id/AshleyVLT/" target="_blank" class="link-item" style="justify-content: center;">
+                <span class="link-text">Voir le profil Steam</span>
+            </a>
+        </div>
+        <div class="status-bar">
+            <div class="status-section">Online</div>
+            <div class="status-section">Steam</div>
         </div>
     </div>
 
@@ -1333,6 +1359,10 @@
             <div class="taskbar-item active" id="taskbar-mediaPlayer" onclick="toggleWindow('mediaPlayer')">
                 <span class="taskbar-item-icon">🎵</span>
                 <span>Windows Media Player</span>
+            </div>
+            <div class="taskbar-item active" id="taskbar-steamWindow" onclick="toggleWindow('steamWindow')">
+                <span class="taskbar-item-icon">🎮</span>
+                <span>Steam</span>
             </div>
         </div>
         <div class="settings-icon" onclick="toggleSettings()" title="Paramètres">⚙️</div>
@@ -1629,6 +1659,7 @@
 
         makeDraggable(document.getElementById('mainWindow'), document.getElementById('titleBar'));
         makeDraggable(document.getElementById('mediaPlayer'), document.getElementById('playerBar'));
+        makeDraggable(document.getElementById('steamWindow'), document.getElementById('steamTitleBar'));
 
         // Flocons de neige roses qui suivent la souris
         document.addEventListener('mousemove', (e) => {
