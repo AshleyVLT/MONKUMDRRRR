@@ -921,9 +921,177 @@
             font-size: 16px;
             padding: 0 8px;
         }
+        /* Écran de démarrage Windows XP */
+        .xp-boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .xp-boot-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .xp-boot-logo {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial', sans-serif;
+            letter-spacing: -1px;
+        }
+
+        .xp-boot-logo span {
+            color: #FF6600;
+        }
+
+        .xp-progress-container {
+            width: 300px;
+            margin-top: 30px;
+        }
+
+        .xp-progress-bar {
+            height: 20px;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .xp-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(180deg, #3F8CF3 0%, #2373E8 50%, #1941A5 100%);
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .xp-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.2) 10px,
+                rgba(255,255,255,0.2) 20px
+            );
+            animation: progressStripe 1s linear infinite;
+        }
+
+        @keyframes progressStripe {
+            from { transform: translateX(0); }
+            to { transform: translateX(20px); }
+        }
+
+        .xp-boot-text {
+            color: #ccc;
+            font-size: 14px;
+            margin-top: 15px;
+            font-family: Tahoma, sans-serif;
+            text-align: center;
+        }
+
+        /* Logo Windows XP */
+        .xp-logo-img {
+            width: 400px;
+            max-width: 80%;
+            margin-bottom: 40px;
+            animation: logoPulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+
+        /* Phase BIOS POST avant le logo */
+        .bios-post {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 99999999;
+            color: #ccc;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .bios-post.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .bios-text {
+            line-height: 1.6;
+        }
+
+        .bios-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: #ccc;
+            animation: blink 0.5s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Cacher le contenu principal pendant le boot */
+        body.booting .window,
+        body.booting .media-player,
+        body.booting .taskbar {
+            opacity: 0;
+            visibility: hidden;
+        }
     </style>
 </head>
-<body>
+<body class="booting">
+    <!-- Phase 1: BIOS POST -->
+    <div class="bios-post" id="biosPost">
+        <div class="bios-text" id="biosText"></div>
+        <div style="margin-top: auto;">
+            <span class="bios-cursor"></span>
+        </div>
+    </div>
+
+    <!-- Phase 2: Écran de démarrage Windows XP -->
+    <div class="xp-boot-screen hidden" id="xpBootScreen">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_XP_logo_and_wordmark.svg/1200px-Windows_XP_logo_and_wordmark.svg.png" alt="Windows XP" class="xp-logo-img">
+        <div class="xp-progress-container">
+            <div class="xp-progress-bar">
+                <div class="xp-progress-fill" id="xpProgressFill"></div>
+            </div>
+        </div>
+        <div class="xp-boot-text" id="xpBootText">Chargement...</div>
+    </div>
+
     <div class="window" id="mainWindow">
         <div class="title-bar" id="titleBar">
             <div class="title-bar-text">
@@ -1125,6 +1293,105 @@
     </div>
 
     <script>
+        // ===== SÉQUENCE DE DÉMARRAGE WINDOWS XP =====
+        const biosLines = [
+            "Award Modular BIOS v4.51PG, An Energy Star Ally",
+            "Copyright (C) 1984-2001, Award Software, Inc.",
+            "",
+            "PENTIUM-S CPU at 200MHz",
+            "Memory Test : 262144K OK",
+            "",
+            "Award Plug and Play BIOS Extension v1.0A",
+            "Detecting HDD Primary Master ... MAXTOR 6L040J2",
+            "Detecting HDD Primary Slave  ... None",
+            "Detecting HDD Secondary Master ... None",
+            "Detecting HDD Secondary Slave  ... None",
+            "",
+            "CMOS checksum error - Defaults loaded",
+            "Press F1 to continue, DEL to enter SETUP",
+            "",
+            "Starting MS-DOS...",
+            "HIMEM is testing extended memory...",
+            "HIMEM: Extended memory available",
+            "",
+            "Microsoft(R) MS-DOS(R) Version 6.22",
+            "           (C)Copyright Microsoft Corp 1981-1994.",
+            "",
+            "Starting Windows 95...",
+            "Starting Windows 98...",
+            "Starting Windows Millennium...",
+            "Starting Windows XP..."
+        ];
+
+        let currentLine = 0;
+        const biosText = document.getElementById('biosText');
+        const biosPost = document.getElementById('biosPost');
+        const xpBootScreen = document.getElementById('xpBootScreen');
+        const xpProgressFill = document.getElementById('xpProgressFill');
+        const xpBootText = document.getElementById('xpBootText');
+
+        // Afficher le texte BIOS ligne par ligne
+        function typeBiosText() {
+            if (currentLine < biosLines.length) {
+                const line = document.createElement('div');
+                line.textContent = biosLines[currentLine];
+                biosText.appendChild(line);
+                currentLine++;
+                
+                // Délai aléatoire entre chaque ligne pour effet réaliste
+                const delay = Math.random() * 100 + 50;
+                setTimeout(typeBiosText, delay);
+            } else {
+                // Fin du BIOS, attendre un peu puis passer à Windows XP
+                setTimeout(startWindowsBoot, 800);
+            }
+        }
+
+        // Démarrer l'écran Windows XP
+        function startWindowsBoot() {
+            biosPost.classList.add('hidden');
+            xpBootScreen.classList.remove('hidden');
+            
+            // Animer la barre de progression
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15 + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    setTimeout(finishBoot, 500);
+                }
+                xpProgressFill.style.width = progress + '%';
+                
+                // Changer le texte selon la progression
+                if (progress < 30) {
+                    xpBootText.textContent = 'Chargement du système...';
+                } else if (progress < 60) {
+                    xpBootText.textContent = 'Chargement des paramètres personnels...';
+                } else if (progress < 90) {
+                    xpBootText.textContent = 'Préparation du bureau...';
+                } else {
+                    xpBootText.textContent = 'Bienvenue...';
+                }
+            }, 200);
+        }
+
+        // Fin du boot, afficher le site
+        function finishBoot() {
+            xpBootScreen.classList.add('hidden');
+            document.body.classList.remove('booting');
+            
+            // Son de démarrage Windows XP (optionnel - décommenter si vous voulez un son)
+            // const bootSound = new Audio('path/to/windows-xp-startup.mp3');
+            // bootSound.play().catch(() => {});
+        }
+
+        // Démarrer la séquence au chargement
+        window.addEventListener('DOMContentLoaded', () => {
+            // Petit délai avant de commencer le POST
+            setTimeout(typeBiosText, 500);
+        });
+
         const a = document.getElementById('audioPlayer');
         const p = document.getElementById('playBtn');
         const b = document.getElementById('progressBar');
