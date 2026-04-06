@@ -233,9 +233,9 @@
             fill: white;
         }
 
-        .onlyfans-icon {
-            background: linear-gradient(135deg, #00AFF0 0%, #0088CC 100%);
-            border: 1px solid #006699;
+        .fansly-icon {
+            background: linear-gradient(135deg, #2E8B8B 0%, #1E5E5E 100%);
+            border: 1px solid #144545;
             border-radius: 2px;
         }
 
@@ -898,6 +898,35 @@
             cursor: pointer;
         }
 
+        /* Liste des raccourcis clavier */
+        .keybind-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .keybind-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+        }
+
+        .keybind-item kbd {
+            background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 100%);
+            border: 2px solid;
+            border-color: #FFF #808080 #808080 #FFF;
+            padding: 2px 8px;
+            font-family: 'Tahoma', sans-serif;
+            font-size: 10px;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .keybind-item span {
+            color: #333;
+            flex: 1;
+        }
+
         /* Effets d'arrière-plan */
         .comet {
             position: fixed;
@@ -1160,10 +1189,10 @@
                 <div class="link-item-wrapper">
                     <div class="chat-bubble">Tes sérieux·se la ? 💀</div>
                     <a href="#" class="link-item" onclick="return false;">
-                        <div class="link-icon onlyfans-icon">
-                            <img src="https://www.edigitalagency.com.au/wp-content/uploads/OnlyFans-logo-symbol-icon-png-blue-background-300x300.png" alt="OnlyFans" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
+                        <div class="link-icon fansly-icon">
+                            <img src="https://i0.wp.com/creatorhub.fansly.com/wp-content/uploads/2025/04/FANSLY-Posts-48.png?fit=1080%2C1080&ssl=1&w=640" alt="Fansly" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
                         </div>
-                        <span class="link-text">OnlyFans</span>
+                        <span class="link-text">Fansly</span>
                     </a>
                 </div>
             </div>
@@ -1267,6 +1296,24 @@
                 <div class="settings-option">
                     <label>Couleur de l'effet :</label>
                     <input type="color" id="effectColor" class="color-picker" value="#FFFFFF">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>⌨️ Raccourcis clavier</h3>
+                <div class="keybind-list">
+                    <div class="keybind-item">
+                        <kbd>Ctrl</kbd> + <kbd>M</kbd>
+                        <span>Nommer le chat</span>
+                    </div>
+                    <div class="keybind-item">
+                        <kbd>Ctrl</kbd> + <kbd>Z</kbd>
+                        <span>Mode Zen (Laufey)</span>
+                    </div>
+                    <div class="keybind-item">
+                        <kbd>Entrée</kbd>
+                        <span>Valider le nom du chat</span>
+                    </div>
                 </div>
             </div>
         </div>
