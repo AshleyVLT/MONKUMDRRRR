@@ -1769,14 +1769,6 @@
             }
         });
 
-        // Auto-play la musique
-        window.addEventListener('load', () => {
-            a.play().catch(() => {
-                // Si autoplay bloqué, on garde le bouton play
-                p.textContent = '▶️';
-            });
-        });
-
         function togglePlayer() { m.classList.toggle('show'); }
 
         function playPause() {
@@ -2146,12 +2138,8 @@
                 
                 // Charger Laufey automatiquement (piste 3, index 2)
                 loadTrack(2);
-                if (a.paused) {
-                    a.play();
-                    p.textContent = '⏸️';
-                }
                 
-                console.log('🧘‍♀️ Mode Zen activé - Laufey en cours...');
+                console.log('🧘‍♀️ Mode Zen activé - Laufey chargée');
             } else {
                 // Désactiver le mode zen
                 document.body.classList.remove('zen-mode');
@@ -2171,9 +2159,6 @@
                 // Charger Laufey automatiquement
                 setTimeout(() => {
                     loadTrack(2);
-                    a.play().catch(() => {
-                        p.textContent = '▶️';
-                    });
                 }, 500);
             }
         });
