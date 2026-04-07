@@ -1010,9 +1010,16 @@
         .xp-progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(180deg, #3F8CF3 0%, #2373E8 50%, #1941A5 100%);
+            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background-size: 200% 100%;
+            animation: rgbFlow 2s linear infinite;
             transition: width 0.3s ease;
             position: relative;
+        }
+
+        @keyframes rgbFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .xp-progress-fill::after {
@@ -1026,8 +1033,8 @@
                 90deg,
                 transparent,
                 transparent 10px,
-                rgba(255,255,255,0.2) 10px,
-                rgba(255,255,255,0.2) 20px
+                rgba(0,0,0,0.3) 10px,
+                rgba(0,0,0,0.3) 20px
             );
             animation: progressStripe 1s linear infinite;
         }
@@ -1058,6 +1065,134 @@
         .xp-boot-logo-img {
             max-width: 300px;
             max-height: 120px;
+        }
+
+        .xp-click-continue {
+            color: white;
+            font-size: 16px;
+            margin-top: 20px;
+            font-family: Tahoma, sans-serif;
+            text-align: center;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Cookie Clicker Styles */
+        .cookie-game {
+            background: #2c1810;
+            color: #fff;
+        }
+
+        .cookie-counter {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .cookie-btn {
+            font-size: 80px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s ease;
+            display: inline-block;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .cookie-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .cookie-btn:active {
+            transform: scale(0.95);
+        }
+
+        .cookie-shop {
+            margin-top: 20px;
+        }
+
+        .cookie-upgrade {
+            background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+            border: 2px solid #A0522D;
+            border-radius: 4px;
+            color: white;
+            padding: 8px 16px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: Tahoma, sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cookie-upgrade:hover {
+            background: linear-gradient(180deg, #A0522D 0%, #8B4513 100%);
+        }
+
+        .cookie-upgrade:disabled {
+            background: #555;
+            border-color: #777;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .cookie-stats {
+            margin-top: 10px;
+            font-size: 11px;
+            color: #ccc;
+        }
+
+        /* Steam Minimal Interface */
+        .steam-minimal {
+            background: linear-gradient(135deg, #1b2838 0%, #0f1922 100%);
+        }
+
+        .steam-game-card {
+            background: linear-gradient(135deg, #2a475e 0%, #1b2838 100%);
+            border-radius: 4px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #3d6c8c;
+            margin-bottom: 15px;
+        }
+
+        .steam-game-card:hover {
+            background: linear-gradient(135deg, #3d6c8c 0%, #2a475e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .steam-game-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .steam-game-title {
+            color: #c7d5e0;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .steam-game-status {
+            color: #a4d007;
+            font-size: 11px;
+            background: rgba(164, 208, 7, 0.15);
+            padding: 4px 12px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .steam-profile-link {
+            color: #66c0f4;
+            font-size: 11px;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .steam-profile-link:hover {
+            opacity: 1;
+            text-decoration: underline;
         }
 
         /* Phase BIOS POST avant le logo */
@@ -1129,6 +1264,7 @@
         <a href="https://datakool.com" target="_blank" class="xp-boot-logo-link">
             <img src="https://i.imgur.com/plcHFnE.png" alt="Datakool" class="xp-boot-logo-img">
         </a>
+        <div class="xp-click-continue" id="xpClickContinue" style="display: none;">Cliquer pour continuer</div>
     </div>
 
     <div class="window" id="mainWindow">
@@ -1258,10 +1394,10 @@
         </div>
     </div>
 
-    <div class="window" id="steamWindow" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 400px; display: none;">
+    <div class="window minimized" id="steamWindow" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 280px;">
         <div class="title-bar" id="steamTitleBar">
             <div class="title-bar-text">
-                <span style="margin-left: 8px;">🎮 Steam Profile</span>
+                <span style="margin-left: 8px;">🎮 Steam</span>
             </div>
             <div class="title-bar-controls">
                 <button class="title-bar-button minimize" onclick="minimizeWindow('steamWindow')"></button>
@@ -1269,17 +1405,47 @@
                 <button class="title-bar-button close" onclick="closeWindow('steamWindow')"></button>
             </div>
         </div>
-        <div class="window-content" style="padding: 20px; text-align: center;">
-            <div style="font-size: 48px; margin-bottom: 15px;">🎮</div>
-            <h3 style="margin: 0 0 10px 0; font-size: 16px;">AshleyVLT</h3>
-            <p style="margin: 0 0 20px 0; font-size: 12px; color: #666;">Steam Profile</p>
-            <a href="https://steamcommunity.com/id/AshleyVLT/" target="_blank" class="link-item" style="justify-content: center;">
-                <span class="link-text">Voir le profil Steam</span>
+        <div class="window-content steam-minimal" style="padding: 15px; text-align: center;">
+            <div class="steam-game-card" onclick="toggleWindow('cookieWindow'); minimizeWindow('steamWindow');">
+                <div class="steam-game-icon">🍪</div>
+                <div class="steam-game-title">Cookie Clicker</div>
+                <div class="steam-game-status">▶ Jouer</div>
+            </div>
+            <a href="https://steamcommunity.com/id/AshleyVLT/" target="_blank" class="steam-profile-link">
+                Voir le profil Steam →
             </a>
         </div>
         <div class="status-bar">
             <div class="status-section">Online</div>
-            <div class="status-section">Steam</div>
+            <div class="status-section">1 jeu</div>
+        </div>
+    </div>
+
+    <!-- Cookie Clicker Window -->
+    <div class="window minimized" id="cookieWindow" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px;">
+        <div class="title-bar" id="cookieTitleBar">
+            <div class="title-bar-text">
+                <span style="margin-left: 8px;">🍪 Cookie Clicker</span>
+            </div>
+            <div class="title-bar-controls">
+                <button class="title-bar-button minimize" onclick="minimizeWindow('cookieWindow')"></button>
+                <button class="title-bar-button maximize"></button>
+                <button class="title-bar-button close" onclick="closeWindow('cookieWindow')"></button>
+            </div>
+        </div>
+        <div class="window-content cookie-game" style="padding: 20px; text-align: center;">
+            <div class="cookie-counter">🍪 <span id="cookieCount">0</span></div>
+            <div class="cookie-btn" id="cookieBtn">🍪</div>
+            <div class="cookie-shop">
+                <button class="cookie-upgrade" id="cookieUpgrade" onclick="buyUpgrade()">
+                    🖱️ Auto-clicker (<span id="upgradeCost">10</span> 🍪)
+                </button>
+            </div>
+            <div class="cookie-stats">+ <span id="cps">0</span> 🍪/sec</div>
+        </div>
+        <div class="status-bar">
+            <div class="status-section">Clicking...</div>
+            <div class="status-section">Cookie Clicker</div>
         </div>
     </div>
 
@@ -1383,6 +1549,10 @@
                 <span class="taskbar-item-icon">🎮</span>
                 <span>Steam</span>
             </div>
+            <div class="taskbar-item active" id="taskbar-cookieWindow" onclick="toggleWindow('cookieWindow')">
+                <span class="taskbar-item-icon">🍪</span>
+                <span>Cookie Clicker</span>
+            </div>
         </div>
         <div class="settings-icon" onclick="toggleSettings()" title="Paramètres">⚙️</div>
         <div class="taskbar-clock" id="taskbarClock">12:00</div>
@@ -1391,6 +1561,11 @@
     <script>
         // ===== SÉQUENCE DE DÉMARRAGE WINDOWS XP =====
         const biosLines = [
+            "    _   ___ _  _ _    _____   __    __  _   ___      ___   _",
+            "   /_\ / __| || | |  | __\ \ / /   / / | | | \ \    / / | | |",
+            "  / _ \\__ \ __ | |__| _| \ V /   / /  | |_| |\ \/\/ /| |_| |",
+            " /_/ \_\___/_||_|____|___| |_|   /_/    \___/  \_/\_/  \___/",
+            "",
             "Award Modular BIOS v4.51PG, An Energy Star Ally",
             "Copyright (C) 1984-2001, Award Software, Inc.",
             "",
@@ -1455,7 +1630,10 @@
                 if (progress >= 100) {
                     progress = 100;
                     clearInterval(progressInterval);
-                    setTimeout(finishBoot, 1500);
+                    // Afficher "Cliquer pour continuer" au lieu de finir direct
+                    xpBootText.textContent = 'Chargement terminé';
+                    document.getElementById('xpClickContinue').style.display = 'block';
+                    xpBootScreen.addEventListener('click', finishBootWithSound);
                 }
                 xpProgressFill.style.width = progress + '%';
                 
@@ -1472,16 +1650,20 @@
             }, 400);
         }
 
-        // Fin du boot, afficher le site
-        function finishBoot() {
-            xpBootScreen.classList.add('hidden');
-            document.body.classList.remove('booting');
-            
-            // Son de démarrage Windows XP
+        // Fin du boot avec son, déclenché par le clic
+        function finishBootWithSound() {
             const xpStartSound = document.getElementById('xpStartSound');
             if (xpStartSound) {
                 xpStartSound.play().catch(() => {});
             }
+            finishBoot();
+            xpBootScreen.removeEventListener('click', finishBootWithSound);
+        }
+
+        // Fin du boot, afficher le site
+        function finishBoot() {
+            xpBootScreen.classList.add('hidden');
+            document.body.classList.remove('booting');
         }
 
         // Démarrer la séquence au chargement
@@ -1681,6 +1863,61 @@
         makeDraggable(document.getElementById('mainWindow'), document.getElementById('titleBar'));
         makeDraggable(document.getElementById('mediaPlayer'), document.getElementById('playerBar'));
         makeDraggable(document.getElementById('steamWindow'), document.getElementById('steamTitleBar'));
+        makeDraggable(document.getElementById('cookieWindow'), document.getElementById('cookieTitleBar'));
+
+        // ===== COOKIE CLICKER =====
+        let cookies = parseInt(localStorage.getItem('cookies')) || 0;
+        let cps = parseInt(localStorage.getItem('cps')) || 0;
+        let upgradeCost = parseInt(localStorage.getItem('upgradeCost')) || 10;
+
+        const cookieBtn = document.getElementById('cookieBtn');
+        const cookieCount = document.getElementById('cookieCount');
+        const cpsDisplay = document.getElementById('cps');
+        const upgradeBtn = document.getElementById('cookieUpgrade');
+        const upgradeCostDisplay = document.getElementById('upgradeCost');
+
+        function updateCookieDisplay() {
+            cookieCount.textContent = cookies;
+            cpsDisplay.textContent = cps;
+            upgradeCostDisplay.textContent = upgradeCost;
+            upgradeBtn.disabled = cookies < upgradeCost;
+        }
+
+        function clickCookie() {
+            cookies++;
+            updateCookieDisplay();
+            saveCookies();
+        }
+
+        function buyUpgrade() {
+            if (cookies >= upgradeCost) {
+                cookies -= upgradeCost;
+                cps++;
+                upgradeCost = Math.floor(upgradeCost * 1.5);
+                updateCookieDisplay();
+                saveCookies();
+            }
+        }
+
+        function saveCookies() {
+            localStorage.setItem('cookies', cookies);
+            localStorage.setItem('cps', cps);
+            localStorage.setItem('upgradeCost', upgradeCost);
+        }
+
+        cookieBtn.addEventListener('click', clickCookie);
+
+        // Auto-clicker loop
+        setInterval(() => {
+            if (cps > 0) {
+                cookies += cps;
+                updateCookieDisplay();
+                saveCookies();
+            }
+        }, 1000);
+
+        // Initialize display
+        updateCookieDisplay();
 
         // Flocons de neige roses qui suivent la souris
         document.addEventListener('mousemove', (e) => {
