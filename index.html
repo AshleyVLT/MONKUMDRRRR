@@ -1045,6 +1045,21 @@
             text-align: center;
         }
 
+        .xp-boot-logo-link {
+            margin-top: 30px;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .xp-boot-logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        .xp-boot-logo-img {
+            max-width: 300px;
+            max-height: 120px;
+        }
+
         /* Phase BIOS POST avant le logo */
         .bios-post {
             position: fixed;
@@ -1111,6 +1126,9 @@
             </div>
         </div>
         <div class="xp-boot-text" id="xpBootText">Chargement...</div>
+        <a href="https://datakool.com" target="_blank" class="xp-boot-logo-link">
+            <img src="https://i.imgur.com/plcHFnE.png" alt="Datakool" class="xp-boot-logo-img">
+        </a>
     </div>
 
     <div class="window" id="mainWindow">
@@ -1432,11 +1450,11 @@
             // Animer la barre de progression
             let progress = 0;
             const progressInterval = setInterval(() => {
-                progress += Math.random() * 15 + 5;
+                progress += Math.random() * 8 + 2;
                 if (progress >= 100) {
                     progress = 100;
                     clearInterval(progressInterval);
-                    setTimeout(finishBoot, 500);
+                    setTimeout(finishBoot, 1500);
                 }
                 xpProgressFill.style.width = progress + '%';
                 
@@ -1450,7 +1468,7 @@
                 } else {
                     xpBootText.textContent = 'Bienvenue...';
                 }
-            }, 200);
+            }, 400);
         }
 
         // Fin du boot, afficher le site
