@@ -716,8 +716,8 @@
             left: 0;
             width: 100%;
             height: 40px;
-            background: linear-gradient(180deg, #245EDC 0%, #3F8CF3 9%, #245EDC 18%, #1941A5 92%, #1941A5 93%, #1434A0 95%, #10298F 100%);
-            border-top: 2px solid #5A8EEC;
+            background: linear-gradient(180deg, #E84C8C 0%, #FF6B9D 9%, #E84C8C 18%, #C73E7A 92%, #C73E7A 93%, #B0356B 95%, #9A2D5B 100%);
+            border-top: 2px solid #FFB6C1;
             display: flex;
             align-items: center;
             padding: 0 5px;
@@ -770,9 +770,9 @@
             min-width: 140px;
             max-width: 200px;
             padding: 0 8px;
-            background: linear-gradient(180deg, #3F8CF3 0%, #2373E8 50%, #1941A5 100%);
+            background: linear-gradient(180deg, #FF6B9D 0%, #E84C8C 50%, #C73E7A 100%);
             border: 1px solid;
-            border-color: #5A8EEC #1434A0 #1434A0 #5A8EEC;
+            border-color: #FFB6C1 #9A2D5B #9A2D5B #FFB6C1;
             border-radius: 2px;
             color: white;
             font-size: 11px;
@@ -788,12 +788,12 @@
         }
 
         .taskbar-item:hover {
-            background: linear-gradient(180deg, #4E9BFF 0%, #2E7FF5 50%, #1E4EB8 100%);
+            background: linear-gradient(180deg, #FF7EB0 0%, #F05A99 50%, #D64D87 100%);
         }
 
         .taskbar-item.active {
-            background: linear-gradient(180deg, #1941A5 0%, #2373E8 50%, #3F8CF3 100%);
-            border-color: #1434A0 #5A8EEC #5A8EEC #1434A0;
+            background: linear-gradient(180deg, #C73E7A 0%, #E84C8C 50%, #FF6B9D 100%);
+            border-color: #9A2D5B #FFB6C1 #FFB6C1 #9A2D5B;
             box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
         }
 
@@ -806,9 +806,9 @@
         .taskbar-clock {
             height: 32px;
             padding: 0 12px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
             border: 1px solid;
-            border-color: #1434A0 #5A8EEC #5A8EEC #1434A0;
+            border-color: #9A2D5B #FFB6C1 #FFB6C1 #9A2D5B;
             border-radius: 2px;
             color: white;
             font-size: 11px;
@@ -1284,6 +1284,7 @@
     </div>
 
     <audio id="audioPlayer" src="https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/music.mp3"></audio>
+    <audio id="xpStartSound" src="https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/XpStart.mp3"></audio>
 
     <!-- Nametag du chat -->
     <div id="neko-nametag"></div>
@@ -1476,9 +1477,11 @@
             xpBootScreen.classList.add('hidden');
             document.body.classList.remove('booting');
             
-            // Son de démarrage Windows XP (optionnel - décommenter si vous voulez un son)
-            // const bootSound = new Audio('path/to/windows-xp-startup.mp3');
-            // bootSound.play().catch(() => {});
+            // Son de démarrage Windows XP
+            const xpStartSound = document.getElementById('xpStartSound');
+            if (xpStartSound) {
+                xpStartSound.play().catch(() => {});
+            }
         }
 
         // Démarrer la séquence au chargement
