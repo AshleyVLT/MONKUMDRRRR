@@ -1094,6 +1094,16 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
+        .xp-boot-logo-top {
+            margin-bottom: 20px;
+        }
+
+        .xp-boot-logo-above {
+            max-width: 200px;
+            max-height: 100px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+
         /* Cookie Clicker Styles */
         .cookie-game {
             background: #2c1810;
@@ -1155,6 +1165,92 @@
             margin-top: 10px;
             font-size: 11px;
             color: #ccc;
+        }
+
+        .cookie-header {
+            margin-bottom: 10px;
+        }
+
+        .cookie-per-click {
+            font-size: 10px;
+            color: #aaa;
+            margin-top: 2px;
+        }
+
+        .upgrade-row {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .cookie-upgrade {
+            background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+            border: 2px solid #A0522D;
+            border-radius: 4px;
+            color: white;
+            padding: 6px 10px;
+            font-size: 10px;
+            cursor: pointer;
+            font-family: Tahoma, sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            min-width: 120px;
+        }
+
+        .cookie-upgrade:hover {
+            background: linear-gradient(180deg, #A0522D 0%, #8B4513 100%);
+        }
+
+        .cookie-upgrade:disabled {
+            background: #444;
+            border-color: #666;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .upgrade-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6600;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cookie-achievements {
+            margin-top: 8px;
+            font-size: 9px;
+            color: #ffcc00;
+            min-height: 14px;
+        }
+
+        .golden-cookie {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: goldenFloat 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px gold);
+        }
+
+        .golden-cookie.show {
+            opacity: 1;
+        }
+
+        @keyframes goldenFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(10deg); }
         }
 
         /* Steam Minimal Interface */
@@ -1272,6 +1368,9 @@
 
     <!-- Phase 2: Écran de démarrage Windows XP -->
     <div class="xp-boot-screen hidden" id="xpBootScreen">
+        <div class="xp-boot-logo-top">
+            <img src="https://i.imgur.com/UII6CSg.png" alt="Logo" class="xp-boot-logo-above">
+        </div>
         <div class="xp-progress-container">
             <div class="xp-progress-bar">
                 <div class="xp-progress-fill" id="xpProgressFill"></div>
@@ -1450,15 +1549,39 @@
                 <button class="title-bar-button close" onclick="closeWindow('cookieWindow')"></button>
             </div>
         </div>
-        <div class="window-content cookie-game" style="padding: 20px; text-align: center;">
-            <div class="cookie-counter">🍪 <span id="cookieCount">0</span></div>
+        <div class="window-content cookie-game" style="padding: 15px; text-align: center;">
+            <div class="cookie-header">
+                <div class="cookie-counter">🍪 <span id="cookieCount">0</span></div>
+                <div class="cookie-per-click">+<span id="clickPower">1</span> par clic</div>
+            </div>
             <div class="cookie-btn" id="cookieBtn">🍪</div>
             <div class="cookie-shop">
-                <button class="cookie-upgrade" id="cookieUpgrade" onclick="buyUpgrade()">
-                    🖱️ Auto-clicker (<span id="upgradeCost">10</span> 🍪)
-                </button>
+                <div class="upgrade-row">
+                    <button class="cookie-upgrade" id="cursorUpgrade" onclick="buyCursor()">
+                        🖱️ Cursor (<span id="cursorCost">15</span> 🍪)
+                        <span class="upgrade-count" id="cursorCount">0</span>
+                    </button>
+                    <button class="cookie-upgrade" id="grandmaUpgrade" onclick="buyGrandma()">
+                        👵 Grandma (<span id="grandmaCost">100</span> 🍪)
+                        <span class="upgrade-count" id="grandmaCount">0</span>
+                    </button>
+                </div>
+                <div class="upgrade-row">
+                    <button class="cookie-upgrade" id="farmUpgrade" onclick="buyFarm()">
+                        🚜 Farm (<span id="farmCost">500</span> 🍪)
+                        <span class="upgrade-count" id="farmCount">0</span>
+                    </button>
+                    <button class="cookie-upgrade" id="clickUpgrade" onclick="buyClickPower()">
+                        💪 Power Click (<span id="clickCost">50</span> 🍪)
+                        <span class="upgrade-count" id="clickLevel">1</span>
+                    </button>
+                </div>
             </div>
-            <div class="cookie-stats">+ <span id="cps">0</span> 🍪/sec</div>
+            <div class="cookie-stats">
+                <div>+ <span id="cps">0</span> 🍪/sec</div>
+                <div class="cookie-achievements" id="achievements"></div>
+            </div>
+            <div class="golden-cookie" id="goldenCookie" onclick="clickGoldenCookie()">✨</div>
         </div>
         <div class="status-bar">
             <div class="status-section">Clicking...</div>
@@ -1874,50 +1997,185 @@
         makeDraggable(document.getElementById('steamWindow'), document.getElementById('steamTitleBar'));
         makeDraggable(document.getElementById('cookieWindow'), document.getElementById('cookieTitleBar'));
 
-        // ===== COOKIE CLICKER =====
+        // ===== COOKIE CLICKER ENHANCED =====
         let cookies = parseInt(localStorage.getItem('cookies')) || 0;
-        let cps = parseInt(localStorage.getItem('cps')) || 0;
-        let upgradeCost = parseInt(localStorage.getItem('upgradeCost')) || 10;
+        let clickPower = parseInt(localStorage.getItem('clickPower')) || 1;
+        
+        // Upgrade counts
+        let cursors = parseInt(localStorage.getItem('cursors')) || 0;
+        let grandmas = parseInt(localStorage.getItem('grandmas')) || 0;
+        let farms = parseInt(localStorage.getItem('farms')) || 0;
+        
+        // Upgrade costs
+        let cursorCost = parseInt(localStorage.getItem('cursorCost')) || 15;
+        let grandmaCost = parseInt(localStorage.getItem('grandmaCost')) || 100;
+        let farmCost = parseInt(localStorage.getItem('farmCost')) || 500;
+        let clickCost = parseInt(localStorage.getItem('clickCost')) || 50;
 
         const cookieBtn = document.getElementById('cookieBtn');
         const cookieCount = document.getElementById('cookieCount');
         const cpsDisplay = document.getElementById('cps');
-        const upgradeBtn = document.getElementById('cookieUpgrade');
-        const upgradeCostDisplay = document.getElementById('upgradeCost');
+        const clickPowerDisplay = document.getElementById('clickPower');
+        
+        // Upgrade buttons and displays
+        const cursorCountDisplay = document.getElementById('cursorCount');
+        const grandmaCountDisplay = document.getElementById('grandmaCount');
+        const farmCountDisplay = document.getElementById('farmCount');
+        const clickLevelDisplay = document.getElementById('clickLevel');
+        
+        const cursorCostDisplay = document.getElementById('cursorCost');
+        const grandmaCostDisplay = document.getElementById('grandmaCost');
+        const farmCostDisplay = document.getElementById('farmCost');
+        const clickCostDisplay = document.getElementById('clickCost');
+        
+        const cursorBtn = document.getElementById('cursorUpgrade');
+        const grandmaBtn = document.getElementById('grandmaUpgrade');
+        const farmBtn = document.getElementById('farmUpgrade');
+        const clickBtn = document.getElementById('clickUpgrade');
+        
+        const achievementsDisplay = document.getElementById('achievements');
+        const goldenCookie = document.getElementById('goldenCookie');
+
+        function calculateCPS() {
+            return cursors + (grandmas * 5) + (farms * 20);
+        }
 
         function updateCookieDisplay() {
             cookieCount.textContent = cookies;
-            cpsDisplay.textContent = cps;
-            upgradeCostDisplay.textContent = upgradeCost;
-            upgradeBtn.disabled = cookies < upgradeCost;
+            cpsDisplay.textContent = calculateCPS();
+            clickPowerDisplay.textContent = clickPower;
+            
+            // Update counts
+            cursorCountDisplay.textContent = cursors;
+            grandmaCountDisplay.textContent = grandmas;
+            farmCountDisplay.textContent = farms;
+            clickLevelDisplay.textContent = clickPower;
+            
+            // Update costs
+            cursorCostDisplay.textContent = cursorCost;
+            grandmaCostDisplay.textContent = grandmaCost;
+            farmCostDisplay.textContent = farmCost;
+            clickCostDisplay.textContent = clickCost;
+            
+            // Disable buttons if not enough cookies
+            cursorBtn.disabled = cookies < cursorCost;
+            grandmaBtn.disabled = cookies < grandmaCost;
+            farmBtn.disabled = cookies < farmCost;
+            clickBtn.disabled = cookies < clickCost;
+            
+            checkAchievements();
         }
 
         function clickCookie() {
-            cookies++;
+            cookies += clickPower;
             updateCookieDisplay();
             saveCookies();
+            
+            // Visual feedback
+            cookieBtn.style.transform = 'scale(0.9)';
+            setTimeout(() => cookieBtn.style.transform = '', 100);
         }
 
-        function buyUpgrade() {
-            if (cookies >= upgradeCost) {
-                cookies -= upgradeCost;
-                cps++;
-                upgradeCost = Math.floor(upgradeCost * 1.5);
+        function buyCursor() {
+            if (cookies >= cursorCost) {
+                cookies -= cursorCost;
+                cursors++;
+                cursorCost = Math.floor(cursorCost * 1.15);
                 updateCookieDisplay();
                 saveCookies();
             }
         }
 
+        function buyGrandma() {
+            if (cookies >= grandmaCost) {
+                cookies -= grandmaCost;
+                grandmas++;
+                grandmaCost = Math.floor(grandmaCost * 1.15);
+                updateCookieDisplay();
+                saveCookies();
+            }
+        }
+
+        function buyFarm() {
+            if (cookies >= farmCost) {
+                cookies -= farmCost;
+                farms++;
+                farmCost = Math.floor(farmCost * 1.15);
+                updateCookieDisplay();
+                saveCookies();
+            }
+        }
+
+        function buyClickPower() {
+            if (cookies >= clickCost) {
+                cookies -= clickCost;
+                clickPower++;
+                clickCost = Math.floor(clickCost * 1.5);
+                updateCookieDisplay();
+                saveCookies();
+            }
+        }
+
+        function clickGoldenCookie() {
+            const bonus = Math.floor(cookies * 0.1) + 100;
+            cookies += bonus;
+            goldenCookie.classList.remove('show');
+            showAchievement(`✨ Golden Cookie! +${bonus} 🍪`);
+            updateCookieDisplay();
+            saveCookies();
+            scheduleGoldenCookie();
+        }
+
+        function scheduleGoldenCookie() {
+            const delay = Math.random() * 30000 + 30000; // 30-60 seconds
+            setTimeout(() => {
+                goldenCookie.classList.add('show');
+                // Hide after 10 seconds if not clicked
+                setTimeout(() => {
+                    goldenCookie.classList.remove('show');
+                    scheduleGoldenCookie();
+                }, 10000);
+            }, delay);
+        }
+
+        function checkAchievements() {
+            const cps = calculateCPS();
+            let achievement = '';
+            
+            if (cookies >= 1000 && cookies < 1001) achievement = '🏆 1000 cookies!';
+            else if (cookies >= 10000 && cookies < 10001) achievement = '🏆 10000 cookies!';
+            else if (cps >= 10 && cps < 11) achievement = '⚡ 10 CPS!';
+            else if (cps >= 100 && cps < 101) achievement = '⚡ 100 CPS!';
+            else if (grandmas >= 10 && grandmas < 11) achievement = '👵 Grandma army!';
+            else if (farms >= 5 && farms < 6) achievement = '🚜 Farm tycoon!';
+            
+            if (achievement) showAchievement(achievement);
+        }
+
+        function showAchievement(text) {
+            achievementsDisplay.textContent = text;
+            setTimeout(() => {
+                achievementsDisplay.textContent = '';
+            }, 3000);
+        }
+
         function saveCookies() {
             localStorage.setItem('cookies', cookies);
-            localStorage.setItem('cps', cps);
-            localStorage.setItem('upgradeCost', upgradeCost);
+            localStorage.setItem('clickPower', clickPower);
+            localStorage.setItem('cursors', cursors);
+            localStorage.setItem('grandmas', grandmas);
+            localStorage.setItem('farms', farms);
+            localStorage.setItem('cursorCost', cursorCost);
+            localStorage.setItem('grandmaCost', grandmaCost);
+            localStorage.setItem('farmCost', farmCost);
+            localStorage.setItem('clickCost', clickCost);
         }
 
         cookieBtn.addEventListener('click', clickCookie);
 
         // Auto-clicker loop
         setInterval(() => {
+            const cps = calculateCPS();
             if (cps > 0) {
                 cookies += cps;
                 updateCookieDisplay();
@@ -1925,8 +2183,9 @@
             }
         }, 1000);
 
-        // Initialize display
+        // Initialize display and start golden cookie
         updateCookieDisplay();
+        scheduleGoldenCookie();
 
         // Flocons de neige roses qui suivent la souris
         document.addEventListener('mousemove', (e) => {
