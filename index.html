@@ -13,21 +13,18 @@
     ></script>
 
     <!-- Open Graph / Discord / Social Media Meta Tags -->
-    <meta property="og:title" content="MANGEMONUK">
-    <meta property="og:description"
-        content="Du coup ça veut mangée mon cu? bizarre un peu les reuf - Site personnel style Windows XP avec musique, jeux et chat">
-    <meta property="og:image"
-        content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
+    <meta property="og:title" content="Ashley">
+    <meta property="og:description" content="Personal links and updates.">
+    <meta property="og:image" content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
     <meta property="og:url" content="https://mangemon.uk">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="MONKUM">
+    <meta property="og:site_name" content="Ashley">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MANGEMONUK">
-    <meta name="twitter:description" content="Site personnel style Windows XP avec musique, jeux et chat">
-    <meta name="twitter:image"
-        content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
+    <meta name="twitter:title" content="Ashley">
+    <meta name="twitter:description" content="Personal links and updates.">
+    <meta name="twitter:image" content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
 
     <!-- Theme Color for Discord/Discord Mobile -->
     <meta name="theme-color" content="#E84C8C">
@@ -352,7 +349,6 @@
             backdrop-filter: blur(10px);
             border-radius: 40px;
             z-index: 10000;
-            animation: windowOpen .5s cubic-bezier(0.16, 1, 0.3, 1);
             border: 1px solid rgba(255, 255, 255, 0.1);
             display: inline-flex;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -1700,6 +1696,56 @@
         .card-steam .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(20, 31, 105, 0.8) 50%, transparent 100%); }
         .card-letterboxd .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(0, 224, 84, 0.8) 50%, transparent 100%); }
         .card-fansly .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(0, 175, 240, 0.8) 50%, transparent 100%); }
+
+        .privacy-link {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 13px;
+            color: #aaaaaa;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+            z-index: 1000;
+        }
+
+        .privacy-link:hover {
+            color: #000000;
+        }
+
+        /* Intro Animations */
+        @keyframes slideUpFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body.booting .site-branding,
+        body.booting .privacy-link,
+        body.booting .social-card,
+        body.booting .media-player {
+            visibility: hidden;
+        }
+
+        body:not(.booting) .site-branding,
+        body:not(.booting) .privacy-link {
+            animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
+        }
+
+        body:not(.booting) .social-card:nth-child(1) { animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards; }
+        body:not(.booting) .social-card:nth-child(2) { animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards; }
+        body:not(.booting) .social-card:nth-child(3) { animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards; }
+        body:not(.booting) .social-card:nth-child(4) { animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards; }
+        body:not(.booting) .social-card:nth-child(5) { animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards; }
+
+        body:not(.booting) .media-player {
+            animation: slideUpFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s backwards;
+        }
     </style>
 </head>
 
@@ -1712,6 +1758,7 @@
     </div>
 
     <div class="site-branding">Ashley</div>
+    <a href="privacy.html" class="privacy-link">- Privacy -</a>
     
     <div class="cards-grid">
         <a href="https://bsky.app/profile/mangemon.uk" target="_blank" class="social-card card-bsky">
