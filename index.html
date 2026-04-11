@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashley - Windows XP</title>
+    <title>Ashley</title>
     
+    <script
+        defer
+        data-domain="mangemon.uk"
+        src="https://datakool.com/tracker/script.js"
+    ></script>
+
     <!-- Open Graph / Discord / Social Media Meta Tags -->
     <meta property="og:title" content="MANGEMONUK">
-    <meta property="og:description" content="Du coup ça veut mangée mon cu? bizarre un peu les reuf - Site personnel style Windows XP avec musique, jeux et chat">
-    <meta property="og:image" content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
+    <meta property="og:description"
+        content="Du coup ça veut mangée mon cu? bizarre un peu les reuf - Site personnel style Windows XP avec musique, jeux et chat">
+    <meta property="og:image"
+        content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
     <meta property="og:url" content="https://mangemon.uk">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MONKUM">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MANGEMONUK">
     <meta name="twitter:description" content="Site personnel style Windows XP avec musique, jeux et chat">
-    <meta name="twitter:image" content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
-    
+    <meta name="twitter:image"
+        content="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif">
+
     <!-- Theme Color for Discord/Discord Mobile -->
     <meta name="theme-color" content="#E84C8C">
-    
-  
-<script defer data-domain="mangemon.uk" src="https://datakool.com/tracker/script.js"></script>
+
+
+    <script defer data-domain="mangemon.uk" src="https://datakool.com/tracker/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -31,254 +46,247 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #000000;
+            --accent-primary: #ffffff;
+            --accent-secondary: #888888;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --border: rgba(255, 255, 255, 0.15);
+        }
+
         body {
-            font-family: Tahoma, 'MS Sans Serif', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
             min-height: 100vh;
-            background: url('https://i.imgur.com/AfvZBq9.jpeg') center/cover no-repeat fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            padding-bottom: 60px; /* Espace pour la taskbar */
+            background: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Masquer la barre de défilement (scrollbar) globale */
+        ::-webkit-scrollbar {
+            display: none;
+            width: 0px;
+            background: transparent;
+        }
+        
+        * {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
 
         .window {
-            width: 100%;
-            max-width: 600px;
-            background: #ECE9D8;
-            border: 3px solid #C00000;
-            box-shadow: 0 0 0 1px #8B0000, 2px 2px 8px rgba(0,0,0,.5);
-            animation: windowOpen .3s ease-out;
+            width: 500px;
+            background: #000000;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+            animation: windowOpen .5s cubic-bezier(0.16, 1, 0.3, 1);
             position: absolute;
-            cursor: move;
+            overflow: hidden;
         }
 
         @keyframes windowOpen {
-            from { opacity: 0; transform: scale(.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .title-bar {
-            background: linear-gradient(180deg, #FF4444 0%, #CC0000 8%, #BB0000 40%, #CC0000 88%, #CC0000 93%, #BB0000 95%, #8B0000 100%);
-            padding: 3px 5px;
+            background: var(--bg-secondary);
+            padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 28px;
+            border-bottom: 1px solid var(--border);
             cursor: move;
         }
 
         .title-bar-text {
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 5px;
-            text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+            gap: 8px;
         }
 
         .title-bar-icon {
-            width: 16px;
-            height: 16px;
-            background: white;
-            border: 1px solid #C00000;
+            width: 12px;
+            height: 12px;
+            background: var(--text-primary);
+            border-radius: 50%;
         }
 
         .title-bar-controls {
             display: flex;
-            gap: 2px;
+            gap: 8px;
         }
 
         .title-bar-button {
-            width: 21px;
-            height: 20px;
-            background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 86%, #C5C2B8 100%);
-            border: 1px solid;
-            border-color: #FFF #000 #000 #FFF;
-            box-shadow: inset 1px 1px 0 #DFDED6, inset -1px -1px 0 #888;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            font-weight: bold;
-            cursor: pointer;
-            user-select: none;
+            font-size: 14px;
         }
 
-        .title-bar-button:active {
-            background: linear-gradient(180deg, #C5C2B8 0%, #E2DFD5 14%, #F1F0E9 100%);
-            box-shadow: inset -1px -1px 0 #DFDED6, inset 1px 1px 0 #888;
+        .title-bar-button:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
         }
 
-        .minimize::before { content: '🗕'; font-size: 10px; }
-        .maximize::before { content: '🗖'; font-size: 10px; }
-        .close::before { content: '✕'; font-size: 12px; }
+        .minimize::before {
+            content: '−';
+        }
+
+        .maximize::before {
+            content: '□';
+        }
+
+        .close::before {
+            content: '×';
+        }
 
         .window-content {
-            padding: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .profile-header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: white;
-            border: 2px solid;
-            border-color: #7F9DB9 #FFF #FFF #7F9DB9;
-            box-shadow: inset 1px 1px 0 #DFDFDF;
-        }
-
-        .avatar-container {
-            width: 96px;
-            height: 96px;
-            margin: 0 auto 12px;
-            border: 2px solid;
-            border-color: #7F9DB9 #FFF #FFF #7F9DB9;
-            background: white;
-            padding: 3px;
-        }
-
-        .avatar {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .username-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 5px;
+            text-align: left;
+            margin-bottom: auto;
+            position: relative;
         }
 
         .username {
-            font-size: 16px;
-            font-weight: bold;
-            color: #000080;
-        }
-
-        .badges {
-            display: flex;
-            gap: 4px;
-        }
-
-        .badge {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
-        }
-
-        .pronouns {
-            display: inline-block;
-            background: #C0C0C0;
-            border: 2px solid;
-            border-color: #FFF #000 #000 #FFF;
-            padding: 2px 8px;
-            font-size: 11px;
-            margin-bottom: 8px;
+            font-size: 80px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            line-height: 1;
         }
 
         .bio {
-            font-size: 11px;
-            line-height: 1.4;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 380px;
+            margin: 0 0 24px 0;
+            font-weight: 500;
         }
 
         .links-group {
-            background: white;
-            border: 2px solid;
-            border-color: #7F9DB9 #FFF #FFF #7F9DB9;
-            padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 24px;
         }
 
         .links-group-title {
             font-size: 11px;
-            font-weight: bold;
-            color: #000080;
-            margin-bottom: 10px;
-            padding-bottom: 3px;
-            border-bottom: 1px solid #C0C0C0;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .link-item-wrapper {
+            margin-bottom: 12px;
         }
 
         .link-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
-            margin-bottom: 6px;
-            background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 86%, #C5C2B8 100%);
-            border: 2px solid;
-            border-color: #FFF #000 #000 #FFF;
-            box-shadow: inset 1px 1px 0 #DFDED6, inset -1px -1px 0 #888;
+            gap: 16px;
+            padding: 16px 20px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             text-decoration: none;
-            color: #000;
-            font-size: 11px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .link-item:hover {
-            background: linear-gradient(180deg, #FFF6CC 0%, #FFE17A 86%, #FFD742 100%);
-        }
-
-        .link-item:active {
-            background: linear-gradient(180deg, #C5C2B8 0%, #E2DFD5 14%, #F1F0E9 100%);
-            box-shadow: inset -1px -1px 0 #DFDED6, inset 1px 1px 0 #888;
-            transform: translate(1px, 1px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .link-icon {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 2px;
+            border-radius: 50%;
+            background: var(--text-primary);
+            position: relative;
         }
 
-        .bluesky-icon { background: linear-gradient(135deg, #87CEEB 0%, #1E90FF 100%); border: 1px solid #0054E3; }
-        .twitch-icon { background: linear-gradient(135deg, #9146FF 0%, #6441A5 100%); border: 1px solid #4B2C7D; }
-        .discord-icon { background: linear-gradient(135deg, #7289DA 0%, #5865F2 100%); border: 1px solid #3C4E9C; }
-        .steam-icon { background: linear-gradient(135deg, #00ADEE 0%, #171A21 100%); border: 1px solid #000; }
+        .bluesky-icon,
+        .twitch-icon,
+        .discord-icon,
+        .steam-icon,
+        .fansly-icon,
+        .letterboxd-icon {
+            background: var(--text-primary);
+        }
 
         .link-icon svg {
             width: 20px;
             height: 20px;
-            fill: white;
+            fill: var(--bg-primary);
         }
 
-        .fansly-icon {
-            background: linear-gradient(135deg, #2E8B8B 0%, #1E5E5E 100%);
-            border: 1px solid #144545;
+        .link-icon img {
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
             border-radius: 2px;
         }
 
-        .letterboxd-icon {
-            background: linear-gradient(135deg, #202830 0%, #14181C 100%);
-            border: 1px solid #0A0C0E;
-            border-radius: 2px;
+        .link-text {
+            position: relative;
         }
 
-        /* iPhone Chat Bubble */
+        /* Chat Bubble */
         .chat-bubble {
             position: absolute;
-            background: #007AFF;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 18px;
-            font-size: 14px;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
-            transform: translateY(-10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
             z-index: 10000;
-            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            top: -50px;
+            top: -45px;
             left: 50%;
             transform: translateX(-50%) translateY(-10px);
         }
@@ -286,14 +294,14 @@
         .chat-bubble::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid #007AFF;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--text-primary);
         }
 
         .link-item-wrapper {
@@ -306,181 +314,252 @@
         }
 
         .footer-text {
-            background: #D4D0C8;
-            border: 2px solid;
-            border-color: #7F9DB9 #FFF #FFF #7F9DB9;
-            padding: 8px;
-            font-size: 10px;
-            line-height: 1.3;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 11px;
+            line-height: 1.5;
             text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
         }
 
         .status-bar {
-            background: #ECE9D8;
-            border-top: 1px solid #FFF;
-            padding: 2px 5px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 12px 20px;
             font-size: 11px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 22px;
+            color: var(--text-secondary);
         }
 
         .status-section {
-            border: 1px solid;
-            border-color: #808080 #FFF #FFF #808080;
-            padding: 2px 8px;
-            background: #D4D0C8;
+            padding: 4px 12px;
+            background: transparent;
+            border-radius: 20px;
+            border: 1px solid var(--border);
         }
 
+        /* Media Player Minimaliste */
         .media-player {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background: #ECE9D8;
-            border: 3px solid #C00000;
-            box-shadow: 0 0 0 1px #8B0000, 2px 2px 8px rgba(0,0,0,.5);
+            bottom: 40px;
+            right: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
             z-index: 10000;
-            animation: windowOpen .3s ease-out;
+            animation: windowOpen .5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: auto;
         }
 
-        .player-bar {
-            background: linear-gradient(180deg, #FF4444 0%, #CC0000 8%, #BB0000 40%, #CC0000 88%, #CC0000 93%, #BB0000 95%, #8B0000 100%);
-            padding: 3px 5px;
+        .player-content-minimal {
+            padding: 12px 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .player-close-minimal {
+            display: none;
+        }
+
+        .track-info-minimal {
+            margin: 0;
+            max-width: 150px;
+            text-align: left;
+        }
+
+        .track-title-minimal {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .track-time-minimal {
+            display: none;
+        }
+
+        .player-controls-minimal {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            height: 24px;
-            cursor: move;
+            gap: 12px;
         }
 
-        .player-title {
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
-            text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-        }
-
-        .player-close {
-            width: 18px;
-            height: 18px;
-            background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 86%, #C5C2B8 100%);
-            border: 1px solid;
-            border-color: #FFF #000 #000 #FFF;
-            font-size: 10px;
+        .control-btn-minimal {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
             cursor: pointer;
-        }
-
-        .player-content {
-            padding: 15px;
-            cursor: default;
-        }
-
-        .track-info {
-            background: #000;
-            color: #FF0000;
-            padding: 8px;
-            margin-bottom: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 10px;
-            border: 2px solid;
-            border-color: #808080 #FFF #FFF #808080;
-        }
-
-        .track-title {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .track-time { font-size: 9px; }
-
-        .player-controls {
+            transition: color 0.2s;
             display: flex;
             align-items: center;
-            gap: 5px;
-            margin-bottom: 10px;
             justify-content: center;
         }
 
-        .control-btn {
+        .control-btn-minimal:hover {
+            color: #ffffff;
+        }
+
+        .control-btn-minimal.active {
+            color: #ffffff;
+        }
+
+        .play-btn-main {
             width: 32px;
             height: 32px;
-            background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 86%, #C5C2B8 100%);
-            border: 2px solid;
-            border-color: #FFF #000 #000 #FFF;
-            box-shadow: inset 1px 1px 0 #DFDED6, inset -1px -1px 0 #888;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #000000;
+            font-size: 12px;
+            margin: 0;
+            transition: transform 0.2s;
+        }
+
+        .play-btn-main:hover {
+            transform: scale(1.1);
+        }
+
+        .progress-bar-minimal {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+            outline: none;
             cursor: pointer;
-            font-size: 14px;
         }
-
-        .control-btn:active {
-            background: linear-gradient(180deg, #C5C2B8 0%, #E2DFD5 14%, #F1F0E9 100%);
-            box-shadow: inset -1px -1px 0 #DFDED6, inset 1px 1px 0 #888;
+        
+        .progress-bar-minimal::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+            transition: transform 0.1s;
         }
-
-        .control-btn.active {
-            background: linear-gradient(180deg, #C5C2B8 0%, #E2DFD5 14%, #F1F0E9 100%);
-            box-shadow: inset -1px -1px 0 #DFDED6, inset 1px 1px 0 #888;
-            color: #0000FF;
+        
+        .progress-bar-minimal::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
         }
-
-        .control-btn:hover {
-            filter: brightness(1.05);
-        }
-
-        .volume-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .volume-slider { flex: 1; height: 20px; }
-        .volume-label { font-size: 16px; }
-        .progress-bar { width: 100%; height: 20px; }
 
         input[type="range"] {
             -webkit-appearance: none;
-            background: #D4D0C8;
-            border: 2px solid;
-            border-color: #808080 #FFF #FFF #808080;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            height: 4px;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 15px;
-            height: 20px;
-            background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 86%, #C5C2B8 100%);
-            border: 2px solid;
-            border-color: #FFF #000 #000 #FFF;
+            width: 14px;
+            height: 14px;
+            background: var(--accent-primary);
+            border-radius: 50%;
             cursor: pointer;
+            box-shadow: 0 0 10px var(--glow-primary);
         }
 
         /* Animation des liens */
-        .link-item-wrapper:nth-child(1) .link-item { animation-delay: 0.1s; }
-        .link-item-wrapper:nth-child(2) .link-item { animation-delay: 0.15s; }
-        .link-item-wrapper:nth-child(3) .link-item { animation-delay: 0.2s; }
-        .link-item-wrapper:nth-child(4) .link-item { animation-delay: 0.25s; }
-        .link-item-wrapper:nth-child(5) .link-item { animation-delay: 0.3s; }
-        .link-item-wrapper:nth-child(6) .link-item { animation-delay: 0.35s; }
-
-        @media (max-width: 640px) {
-            .window { max-width: 95%; }
-            .window-content { padding: 15px; }
-            .title-bar-text { font-size: 10px; }
-            .media-player { width: 90%; right: 5%; bottom: 80px; }
+        .link-item-wrapper:nth-child(1) .link-item {
+            animation-delay: 0.1s;
         }
 
-        /* Flocons de neige roses */
+        .link-item-wrapper:nth-child(2) .link-item {
+            animation-delay: 0.15s;
+        }
+
+        .link-item-wrapper:nth-child(3) .link-item {
+            animation-delay: 0.2s;
+        }
+
+        .link-item-wrapper:nth-child(4) .link-item {
+            animation-delay: 0.25s;
+        }
+
+        .link-item-wrapper:nth-child(5) .link-item {
+            animation-delay: 0.3s;
+        }
+
+        .link-item-wrapper:nth-child(6) .link-item {
+            animation-delay: 0.35s;
+        }
+
+        @media (max-width: 640px) {
+            .window {
+                max-width: 95%;
+            }
+
+            .window-content {
+                padding: 20px;
+            }
+
+            .title-bar-text {
+                font-size: 12px;
+            }
+
+            .media-player {
+                width: 90%;
+                right: 5%;
+                bottom: 100px;
+            }
+
+            .username {
+                font-size: 24px;
+            }
+
+            .avatar-container {
+                width: 80px;
+                height: 80px;
+            }
+
+            .link-item {
+                padding: 14px 16px;
+            }
+
+            .taskbar {
+                height: 70px;
+                padding: 0 16px;
+            }
+
+            .taskbar-item {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+
+            .settings-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+        }
+
+        /* Modern Snowflakes */
         .snowflake {
             position: fixed;
-            color: #FFB6C1;
+            color: var(--accent-primary);
             font-size: 1em;
             pointer-events: none;
             z-index: 10000;
             animation: fall linear forwards;
-            text-shadow: 0 0 5px rgba(255, 182, 193, 0.8);
+            text-shadow: 0 0 10px var(--glow-primary);
         }
 
         @keyframes fall {
@@ -490,54 +569,64 @@
             }
         }
 
-        /* Mode Zen - Transition douce */
+        /* Modern Zen Mode */
         body.zen-mode {
-            background: url('https://external-preview.redd.it/r6g38aXSaQWtd1KxwJbQ-Fs5jtSVDxX3wtLHJEdqixw.jpg?auto=webp&s=fdee18de73d4f642ccc323470e044ed0f1bae7ea') center/cover no-repeat fixed !important;
+            background: #ffffff !important;
             transition: background 0.5s ease;
         }
 
         body.zen-mode .window {
-            border-color: #0066CC !important;
-            box-shadow: 0 0 0 1px #003d7a, 2px 2px 8px rgba(0,0,0,.5) !important;
+            border-color: rgba(6, 182, 212, 0.3) !important;
+            box-shadow:
+                0 0 0 1px rgba(6, 182, 212, 0.1),
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(6, 182, 212, 0.1) !important;
         }
 
         body.zen-mode .title-bar {
-            background: linear-gradient(180deg, #4488FF 0%, #0066CC 8%, #0055BB 40%, #0066CC 88%, #0066CC 93%, #0055BB 95%, #003d7a 100%) !important;
+            background: linear-gradient(180deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%) !important;
+            border-bottom-color: rgba(6, 182, 212, 0.2) !important;
         }
 
         body.zen-mode .media-player {
-            border-color: #0066CC !important;
-            box-shadow: 0 0 0 1px #003d7a, 2px 2px 8px rgba(0,0,0,.5) !important;
+            border-color: rgba(6, 182, 212, 0.3) !important;
+            box-shadow:
+                0 0 0 1px rgba(6, 182, 212, 0.1),
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(6, 182, 212, 0.15) !important;
         }
 
         body.zen-mode .player-bar {
-            background: linear-gradient(180deg, #4488FF 0%, #0066CC 8%, #0055BB 40%, #0066CC 88%) !important;
+            background: linear-gradient(180deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%) !important;
+            border-bottom-color: rgba(6, 182, 212, 0.2) !important;
         }
 
         body.zen-mode .track-title {
-            color: #00CC66 !important;
-            font-weight: bold;
+            color: var(--accent-cyan) !important;
+            font-weight: 600;
         }
 
-        /* Nametag Minecraft pour le chat */
+        /* Modern Neko Nametag */
         #neko-nametag {
             position: fixed;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-            font-size: 11px;
-            font-weight: bold;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
             text-align: center;
             pointer-events: none;
             z-index: 999999;
             white-space: nowrap;
             display: none;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 20px var(--glow-primary);
         }
 
-        /* Popup moderne style Apple */
+        /* Modern Dark Popup */
         .apple-popup-overlay {
             display: none;
             position: fixed;
@@ -545,7 +634,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(20px);
             z-index: 1000000;
             align-items: center;
@@ -558,85 +647,102 @@
         }
 
         .apple-popup {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
             width: 90%;
             max-width: 400px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(232, 76, 140, 0.1);
             animation: slideUp 0.4s ease;
         }
 
         .apple-popup h2 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
-            color: #1d1d1f;
-            margin: 0 0 10px 0;
+            color: var(--text-primary);
+            margin: 0 0 12px 0;
             text-align: center;
         }
 
         .apple-popup p {
             font-size: 14px;
-            color: #6e6e73;
-            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            margin: 0 0 24px 0;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .apple-popup input {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #d2d2d7;
-            border-radius: 10px;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             font-size: 15px;
-            margin-bottom: 20px;
-            transition: border-color 0.2s;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin-bottom: 24px;
+            transition: all 0.2s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-primary);
         }
 
         .apple-popup input:focus {
             outline: none;
-            border-color: #007AFF;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(232, 76, 140, 0.2);
         }
 
         .apple-popup-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .apple-popup-button {
             flex: 1;
-            padding: 12px;
+            padding: 14px;
             border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 500;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
         }
 
         .apple-popup-button.primary {
-            background: #007AFF;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: white;
+            box-shadow: 0 4px 20px rgba(232, 76, 140, 0.3);
         }
 
         .apple-popup-button.primary:hover {
-            background: #0051D5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(232, 76, 140, 0.4);
         }
 
         .apple-popup-button.secondary {
-            background: #f2f2f7;
-            color: #1d1d1f;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
         }
 
         .apple-popup-button.secondary:hover {
-            background: #e5e5ea;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
@@ -644,6 +750,7 @@
                 opacity: 0;
                 transform: translateY(20px) scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -659,7 +766,7 @@
             width: 400px;
             background: #ECE9D8;
             border: 3px solid #0054E3;
-            box-shadow: 0 0 0 1px #003C8F, 4px 4px 10px rgba(0,0,0,.5);
+            box-shadow: 0 0 0 1px #003C8F, 4px 4px 10px rgba(0, 0, 0, .5);
             z-index: 100000;
             display: none;
             animation: xpPopupOpen 0.3s ease-out;
@@ -682,7 +789,7 @@
             color: white;
             font-size: 11px;
             font-weight: bold;
-            text-shadow: 1px 1px 0 rgba(0,0,0,.3);
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
         }
 
         .xp-popup-close {
@@ -720,120 +827,102 @@
                 opacity: 0;
                 transform: translate(-50%, -50%) scale(0.8);
             }
+
             to {
                 opacity: 1;
                 transform: translate(-50%, -50%) scale(1);
             }
         }
 
-        /* Taskbar Windows XP */
-        .taskbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background: linear-gradient(180deg, #E84C8C 0%, #FF6B9D 9%, #E84C8C 18%, #C73E7A 92%, #C73E7A 93%, #B0356B 95%, #9A2D5B 100%);
-            border-top: 2px solid #FFB6C1;
+        /* Dialed.gg Style Taskbar / Controls */
+        .dialed-controls {
+            margin-top: auto;
             display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .dialed-controls p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .dialed-taskbar {
+            display: flex;
+            gap: 16px;
             align-items: center;
-            padding: 0 5px;
-            z-index: 999999;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
-        }
-
-        .start-button {
-            height: 32px;
-            padding: 0 12px 0 8px;
-            background: linear-gradient(180deg, #6BBF5A 0%, #4FA83D 50%, #3C8C2A 100%);
-            border: 1px solid;
-            border-color: #AEE89D #1E5C13 #1E5C13 #AEE89D;
-            border-radius: 4px 4px 2px 2px;
-            font-weight: bold;
-            font-size: 11px;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-            margin-right: 8px;
-        }
-
-        .start-button:hover {
-            background: linear-gradient(180deg, #7DD968 0%, #5AB849 50%, #469536 100%);
-        }
-
-        .start-button:active {
-            background: linear-gradient(180deg, #3C8C2A 0%, #4FA83D 50%, #6BBF5A 100%);
-            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .start-icon {
-            width: 20px;
-            height: 20px;
-            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
-        }
-
-        .taskbar-items {
-            display: flex;
-            gap: 4px;
-            flex: 1;
         }
 
         .taskbar-item {
-            height: 32px;
-            min-width: 140px;
-            max-width: 200px;
-            padding: 0 8px;
-            background: linear-gradient(180deg, #FF6B9D 0%, #E84C8C 50%, #C73E7A 100%);
-            border: 1px solid;
-            border-color: #FFB6C1 #9A2D5B #9A2D5B #FFB6C1;
-            border-radius: 2px;
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
+            width: 48px;
+            height: 48px;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .taskbar-item:hover {
-            background: linear-gradient(180deg, #FF7EB0 0%, #F05A99 50%, #D64D87 100%);
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease;
+            border: none;
+            position: relative;
         }
 
         .taskbar-item.active {
-            background: linear-gradient(180deg, #C73E7A 0%, #E84C8C 50%, #FF6B9D 100%);
-            border-color: #9A2D5B #FFB6C1 #FFB6C1 #9A2D5B;
-            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+            background: #ffffff;
+            color: #000000;
         }
-
-        .taskbar-item-icon {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
+        
+        .taskbar-item.active::before {
+            display: none;
         }
-
-        .taskbar-clock {
-            height: 32px;
-            padding: 0 12px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
-            border: 1px solid;
-            border-color: #9A2D5B #FFB6C1 #FFB6C1 #9A2D5B;
-            border-radius: 2px;
-            color: white;
-            font-size: 11px;
+        
+        .taskbar-item svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .taskbar-item.toggle-easy {
+            width: auto;
+            padding: 0 16px;
+            border-radius: 24px;
+            background: #111111;
+            color: #ffffff;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: auto;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .toggle-switch {
+            width: 28px;
+            height: 16px;
+            background: #333333;
+            border-radius: 8px;
+            position: relative;
+            border: none;
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            top: 2px;
+            left: 2px;
+            transition: all 0.2s;
+        }
+        
+        .taskbar-item.icon-only {
+            background: transparent;
+            color: #ffffff;
         }
 
         /* Fenêtre minimisée */
@@ -845,109 +934,128 @@
             display: none !important;
         }
 
-        /* Fenêtre Paramètres */
+        /* Modern Settings Window */
         .settings-window {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 450px;
-            background: #ECE9D8;
-            border: 3px solid #0054E3;
-            box-shadow: 0 0 0 1px #003C8F, 4px 4px 10px rgba(0,0,0,.5);
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(124, 58, 237, 0.1);
             z-index: 100000;
             display: none;
+            overflow: hidden;
         }
 
         .settings-window.show {
             display: block;
-            animation: windowOpen 0.3s ease-out;
+            animation: windowOpen 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .settings-title-bar {
-            background: linear-gradient(180deg, #0997FF 0%, #0053EE 8%, #0050E1 40%, #0053EE 88%);
-            padding: 3px 5px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 28px;
+            border-bottom: 1px solid var(--border);
         }
 
         .settings-title {
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .settings-content {
-            padding: 20px;
+            padding: 24px;
         }
 
         .settings-section {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .settings-section h3 {
             font-size: 12px;
-            margin-bottom: 10px;
-            color: #000080;
+            margin-bottom: 16px;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .settings-option {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
         }
 
         .settings-option label {
-            font-size: 11px;
+            font-size: 13px;
             flex: 1;
+            color: var(--text-primary);
         }
 
         .settings-select {
-            padding: 4px;
-            border: 2px solid;
-            border-color: #808080 #FFF #FFF #808080;
-            background: white;
-            font-size: 11px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-primary);
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
+            cursor: pointer;
         }
 
         .color-picker {
             width: 50px;
-            height: 30px;
-            border: 2px solid;
-            border-color: #808080 #FFF #FFF #808080;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
             cursor: pointer;
+            background: transparent;
         }
 
-        /* Liste des raccourcis clavier */
+        /* Keybind list modern */
         .keybind-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .keybind-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 11px;
+            gap: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
         }
 
         .keybind-item kbd {
-            background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 100%);
-            border: 2px solid;
-            border-color: #FFF #808080 #808080 #FFF;
-            padding: 2px 8px;
-            font-family: 'Tahoma', sans-serif;
-            font-size: 10px;
-            box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
+            font-size: 11px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         .keybind-item span {
-            color: #333;
+            color: var(--text-secondary);
             flex: 1;
         }
 
@@ -974,14 +1082,18 @@
             font-size: 16px;
             padding: 0 8px;
         }
-        /* Écran de démarrage Windows XP */
+
+        /* Modern Boot Screen */
         .xp-boot-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            background: var(--bg-primary);
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 76, 140, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124, 58, 237, 0.1), transparent);
             z-index: 9999999;
             display: flex;
             flex-direction: column;
@@ -997,29 +1109,34 @@
         }
 
         .xp-boot-logo {
-            font-size: 48px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 20px;
-            font-family: 'Franklin Gothic Medium', 'Arial', sans-serif;
-            letter-spacing: -1px;
+            font-size: 64px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
+            letter-spacing: -3px;
         }
 
         .xp-boot-logo span {
-            color: #FF6600;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .xp-progress-container {
-            width: 300px;
-            margin-top: 30px;
+            width: 320px;
+            margin-top: 40px;
         }
 
         .xp-progress-bar {
-            height: 20px;
-            background: #1a1a1a;
-            border: 2px solid #333;
-            border-radius: 2px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 4px;
             overflow: hidden;
             position: relative;
         }
@@ -1027,103 +1144,108 @@
         .xp-progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-cyan));
             background-size: 200% 100%;
             animation: rgbFlow 2s linear infinite;
             transition: width 0.3s ease;
             position: relative;
+            box-shadow: 0 0 20px var(--glow-primary);
         }
 
         @keyframes rgbFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
+            0% {
+                background-position: 0% 50%;
+            }
 
-        .xp-progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 10px,
-                rgba(0,0,0,0.3) 10px,
-                rgba(0,0,0,0.3) 20px
-            );
-            animation: progressStripe 1s linear infinite;
-        }
-
-        @keyframes progressStripe {
-            from { transform: translateX(0); }
-            to { transform: translateX(20px); }
+            100% {
+                background-position: 200% 50%;
+            }
         }
 
         .xp-boot-text {
-            color: #ccc;
+            color: var(--text-secondary);
             font-size: 14px;
-            margin-top: 15px;
-            font-family: Tahoma, sans-serif;
+            margin-top: 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
             text-align: center;
+            letter-spacing: 1px;
         }
 
         .xp-boot-logo-link {
-            margin-top: 30px;
+            margin-top: 40px;
             display: block;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .xp-boot-logo-link:hover {
             transform: scale(1.05);
+            filter: drop-shadow(0 0 20px rgba(232, 76, 140, 0.5));
         }
 
         .xp-boot-logo-img {
             max-width: 300px;
             max-height: 120px;
+            opacity: 0.8;
         }
 
         .xp-click-continue {
-            color: white;
-            font-size: 16px;
-            margin-top: 20px;
-            font-family: Tahoma, sans-serif;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-top: 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
             text-align: center;
             cursor: pointer;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .xp-click-continue:hover {
+            background: rgba(232, 76, 140, 0.2);
+            border-color: var(--accent-primary);
         }
 
         .xp-boot-logo-top {
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         .xp-boot-logo-above {
             max-width: 200px;
             max-height: 100px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            filter: drop-shadow(0 0 30px rgba(232, 76, 140, 0.5));
         }
 
         /* Cookie Clicker Styles */
         .cookie-game {
-            background: #2c1810;
-            color: #fff;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .cookie-header {
+            margin-bottom: 16px;
         }
 
         .cookie-counter {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .cookie-per-click {
+            font-size: 12px;
+            color: var(--text-secondary);
         }
 
         .cookie-btn {
             font-size: 80px;
             cursor: pointer;
             user-select: none;
-            transition: transform 0.1s ease;
+            transition: all 0.1s ease;
             display: inline-block;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
         }
 
         .cookie-btn:hover {
@@ -1138,110 +1260,80 @@
             margin-top: 20px;
         }
 
-        .cookie-upgrade {
-            background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
-            border: 2px solid #A0522D;
-            border-radius: 4px;
-            color: white;
-            padding: 8px 16px;
-            font-size: 12px;
-            cursor: pointer;
-            font-family: Tahoma, sans-serif;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .cookie-upgrade:hover {
-            background: linear-gradient(180deg, #A0522D 0%, #8B4513 100%);
-        }
-
-        .cookie-upgrade:disabled {
-            background: #555;
-            border-color: #777;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .cookie-stats {
-            margin-top: 10px;
-            font-size: 11px;
-            color: #ccc;
-        }
-
-        .cookie-header {
+        .upgrade-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
             margin-bottom: 10px;
         }
 
-        .cookie-per-click {
-            font-size: 10px;
-            color: #aaa;
-            margin-top: 2px;
-        }
-
-        .upgrade-row {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin-bottom: 8px;
-        }
-
         .cookie-upgrade {
-            background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
-            border: 2px solid #A0522D;
-            border-radius: 4px;
-            color: white;
-            padding: 6px 10px;
-            font-size: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            padding: 10px 14px;
+            font-size: 11px;
             cursor: pointer;
-            font-family: Tahoma, sans-serif;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-family: -apple-system, BlinkMacSystemFont, 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.2s ease;
             position: relative;
-            min-width: 120px;
+            min-width: 130px;
         }
 
         .cookie-upgrade:hover {
-            background: linear-gradient(180deg, #A0522D 0%, #8B4513 100%);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .cookie-upgrade:disabled {
-            background: #444;
-            border-color: #666;
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.05);
             cursor: not-allowed;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .upgrade-count {
             position: absolute;
             top: -8px;
             right: -8px;
-            background: #ff6600;
-            color: white;
+            background: var(--text-primary);
+            color: var(--bg-primary);
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 700;
+        }
+
+        .cookie-stats {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
         }
 
         .cookie-achievements {
-            margin-top: 8px;
-            font-size: 9px;
-            color: #ffcc00;
-            min-height: 14px;
+            margin-top: 12px;
+            font-size: 11px;
+            color: var(--text-primary);
+            font-weight: 600;
+            min-height: 16px;
         }
 
         .golden-cookie {
             position: absolute;
-            top: 50px;
-            right: 20px;
-            font-size: 30px;
+            top: 60px;
+            right: 24px;
+            font-size: 32px;
             cursor: pointer;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
             animation: goldenFloat 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px gold);
+            filter: drop-shadow(0 0 20px gold);
         }
 
         .golden-cookie.show {
@@ -1249,345 +1341,457 @@
         }
 
         @keyframes goldenFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(10deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(10deg);
+            }
         }
 
-        /* Steam Minimal Interface */
-        .steam-minimal {
-            background: linear-gradient(135deg, #1b2838 0%, #0f1922 100%);
+        /* Steam Interface */
+        .steam-old {
+            background: var(--bg-secondary);
         }
 
-        .steam-game-card {
-            background: linear-gradient(135deg, #2a475e 0%, #1b2838 100%);
-            border-radius: 4px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid #3d6c8c;
-            margin-bottom: 15px;
+        .steam-header-old {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .steam-game-card:hover {
-            background: linear-gradient(135deg, #3d6c8c 0%, #2a475e 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        .steam-logo-old {
+            font-size: 20px;
+            color: var(--text-primary);
         }
 
-        .steam-game-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
+        .steam-title-old {
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 600;
         }
 
-        .steam-game-title {
-            color: #c7d5e0;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 5px;
+        .steam-menu-old {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex;
+            gap: 20px;
         }
 
-        .steam-game-status {
-            color: #a4d007;
+        .steam-menu-item {
+            color: var(--text-secondary);
             font-size: 11px;
-            background: rgba(164, 208, 7, 0.15);
-            padding: 4px 12px;
-            border-radius: 2px;
-            display: inline-block;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: color 0.2s;
         }
 
-        .steam-profile-link {
-            color: #66c0f4;
+        .steam-menu-item:hover {
+            color: var(--text-primary);
+        }
+
+        .steam-content-old {
+            background: var(--bg-card);
+            padding: 16px;
+            min-height: 150px;
+        }
+
+        .steam-game-list {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .steam-game-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+
+        .steam-game-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .steam-game-icon-old {
+            width: 40px;
+            height: 40px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .steam-game-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .steam-game-name {
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .steam-game-status-old {
+            color: var(--text-secondary);
+            font-size: 10px;
+        }
+
+        .steam-play-btn {
+            background: var(--text-primary);
+            border: none;
+            border-radius: 8px;
+            color: var(--bg-primary);
+            font-size: 11px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .steam-play-btn:hover {
+            background: var(--text-secondary);
+        }
+
+        .steam-footer-old {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .steam-status-old {
+            color: var(--text-secondary);
+            font-size: 11px;
+        }
+
+        .steam-account-old {
+            color: var(--text-primary);
+            font-size: 11px;
+        }
+
+        .steam-profile-link-old {
+            color: var(--text-secondary);
             font-size: 11px;
             text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.2s ease;
+            display: block;
+            text-align: center;
+            margin-top: 12px;
         }
 
-        .steam-profile-link:hover {
-            opacity: 1;
-            text-decoration: underline;
+        .steam-profile-link-old:hover {
+            color: var(--text-primary);
         }
 
-        /* Phase BIOS POST avant le logo */
-        .bios-post {
+        /* Minimal Boot Screen */
+        .minimal-boot-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            background: #ffffff;
             z-index: 99999999;
-            color: #ccc;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            padding: 20px;
             display: flex;
-            flex-direction: column;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
         }
-
-        .bios-post.hidden {
+        
+        .minimal-boot-screen.hidden {
             opacity: 0;
-            visibility: hidden;
             pointer-events: none;
-        }
-
-        .bios-text {
-            line-height: 1.6;
-        }
-
-        .bios-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 14px;
-            background: #ccc;
-            animation: blink 0.5s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
+            visibility: hidden;
         }
 
         /* Cacher le contenu principal pendant le boot */
         body.booting .window,
-        body.booting .media-player,
-        body.booting .taskbar {
+        body.booting .media-player {
             opacity: 0;
             visibility: hidden;
         }
+        
+        /* Apple Message Bubble Tooltips */
+        .apple-bubble {
+            position: relative;
+        }
+        
+        .apple-bubble::after {
+            content: "Not yet.";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: #ffffff;
+            color: #000000;
+            padding: 8px 16px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .apple-bubble::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(2px);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #ffffff transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s;
+        }
+        
+        .apple-bubble:hover::after,
+        .apple-bubble:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .apple-bubble:hover::after {
+            transform: translateX(-50%) translateY(-5px);
+        }
+        .site-branding {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            letter-spacing: -1px;
+            z-index: 1000;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 120px 40px 40px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                padding: 100px 20px 20px;
+            }
+            .site-branding {
+                top: 20px;
+                left: 20px;
+            }
+        }
+
+        .social-card {
+            position: relative;
+            background: #000000;
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .card-glow {
+            position: absolute;
+            right: -80px;
+            top: -20%;
+            bottom: -20%;
+            width: 200px;
+            background: linear-gradient(180deg, rgba(82, 0, 255, 0) 0%, rgba(147, 51, 234, 0.6) 20%, rgba(59, 130, 246, 0.6) 50%, rgba(16, 185, 129, 0.6) 80%, rgba(16, 185, 129, 0) 100%);
+            filter: blur(40px);
+            opacity: 0.6;
+            pointer-events: none;
+            transition: opacity 0.4s, right 0.4s;
+        }
+        
+        .social-card:hover .card-glow {
+            opacity: 1;
+            right: -60px;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            padding-right: 40px;
+        }
+
+        .card-title {
+            color: #ffffff;
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+            line-height: 1;
+        }
+
+        .card-text {
+            color: #a0a0a0;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .card-arrow {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 24px;
+            transition: color 0.4s, transform 0.4s;
+            z-index: 2;
+        }
+
+        .social-card:hover .card-arrow {
+            color: #ffffff;
+            transform: translateX(6px);
+        }
+        
+        .card-bsky .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(0, 133, 255, 0.8) 50%, transparent 100%); }
+        .card-twitch .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(145, 70, 255, 0.8) 50%, transparent 100%); }
+        .card-discord .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(88, 101, 242, 0.8) 50%, transparent 100%); }
+        .card-steam .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(20, 31, 105, 0.8) 50%, transparent 100%); }
+        .card-letterboxd .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(0, 224, 84, 0.8) 50%, transparent 100%); }
+        .card-fansly .card-glow { background: linear-gradient(180deg, transparent 0%, rgba(0, 175, 240, 0.8) 50%, transparent 100%); }
     </style>
 </head>
+
 <body class="booting">
-    <!-- Phase 1: BIOS POST -->
-    <div class="bios-post" id="biosPost">
-        <div class="bios-text" id="biosText"></div>
-        <div style="margin-top: auto;">
-            <span class="bios-cursor"></span>
+    <!-- Minimal Loading Screen -->
+    <div class="minimal-boot-screen" id="xpBootScreen">
+        <div class="xp-progress-container" style="width: 200px; height: 6px; border: none; background: #eeeeee; border-radius: 3px; overflow: hidden; padding: 0;">
+            <div class="xp-progress-fill" id="xpProgressFill" style="background: #000000; height: 100%; width: 0%; border-radius: 3px;"></div>
         </div>
     </div>
 
-    <!-- Phase 2: Écran de démarrage Windows XP -->
-    <div class="xp-boot-screen hidden" id="xpBootScreen">
-        <div class="xp-boot-logo-top">
-            <img src="https://i.imgur.com/UII6CSg.png" alt="Logo" class="xp-boot-logo-above">
-        </div>
-        <div class="xp-progress-container">
-            <div class="xp-progress-bar">
-                <div class="xp-progress-fill" id="xpProgressFill"></div>
+    <div class="site-branding">Ashley</div>
+    
+    <div class="cards-grid">
+        <a href="https://bsky.app/profile/mangemon.uk" target="_blank" class="social-card card-bsky">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-title">bluesky</div>
+                <div class="card-text">Follow my latest thoughts and general updates.</div>
             </div>
-        </div>
-        <div class="xp-boot-text" id="xpBootText">Chargement...</div>
-        <a href="https://datakool.com" target="_blank" class="xp-boot-logo-link">
-            <img src="https://i.imgur.com/plcHFnE.png" alt="Datakool" class="xp-boot-logo-img">
+            <i class="fa-solid fa-arrow-right card-arrow"></i>
         </a>
-        <div class="xp-click-continue" id="xpClickContinue" style="display: none;">Cliquer pour continuer</div>
-    </div>
 
-    <div class="window" id="mainWindow">
-        <div class="title-bar" id="titleBar">
-            <div class="title-bar-text">
-                <div class="title-bar-icon"></div>
+        <a href="https://twitch.tv/notashleybttv" target="_blank" class="social-card card-twitch">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-title">twitch</div>
+                <div class="card-text">Join my live streams, watch me play and chat alive.</div>
             </div>
-            <div class="title-bar-controls">
-                <button class="title-bar-button minimize" onclick="minimizeWindow('mainWindow')"></button>
-                <button class="title-bar-button maximize"></button>
+            <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </a>
+
+        <a href="https://discord.gg/h4CM7SMb" target="_blank" class="social-card card-discord">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-title">discord</div>
+                <div class="card-text">Join the community chat, share memes and hang out.</div>
             </div>
-        </div>
+            <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </a>
 
-        <div class="window-content">
-            <div class="profile-header">
-                <div class="avatar-container">
-                    <img src="https://i.gjcdn.net/public-data/comments/322/65/20159565/media/hatsune-miku-pfp-zwvmtbmi.gif" alt="Ashley" class="avatar">
-                </div>
-                <div class="username-container">
-                    <div class="username">Ashley</div>
-                    <div class="badges">
-                        <img src="https://cdn-icons-png.freepik.com/512/17460/17460216.png" alt="Verified" class="badge" title="Verified">
-                    </div>
-                </div>
-                <div class="pronouns">She/Her</div>
-                <div class="bio">Du coup ça veut mangée mon cu? bizarre un peu les reuf</div>
+        <a href="#" target="_blank" class="social-card card-steam">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-title">steam</div>
+                <div class="card-text">Check out my gaming library and add me to play together.</div>
             </div>
+            <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </a>
 
-            <div class="links-group">
-                <div class="links-group-title">📁 Mes liens</div>
-                
-                <div class="link-item-wrapper">
-                    <a href="https://bsky.app/profile/ashleyvlt.bsky.social" class="link-item" target="_blank">
-                        <div class="link-icon bluesky-icon">
-                            <img src="https://i.imgur.com/lWwKnxM.png" alt="Bluesky" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
-                        </div>
-                        <span class="link-text">Bluesky</span>
-                    </a>
-                </div>
-
-                <div class="link-item-wrapper">
-                    <a href="https://www.twitch.tv/ashleyvltr" class="link-item" target="_blank">
-                        <div class="link-icon twitch-icon">
-                            <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
-                        </div>
-                        <span class="link-text">Twitch</span>
-                    </a>
-                </div>
-
-                <div class="link-item-wrapper">
-                    <a href="https://discord.gg/h4CM7SMb" class="link-item" target="_blank">
-                        <div class="link-icon discord-icon">
-                            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.010c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.196.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                        </div>
-                        <span class="link-text">Discord</span>
-                    </a>
-                </div>
-
-                <div class="link-item-wrapper">
-                    <a href="https://steamcommunity.com/id/AshleyVLT/" class="link-item" target="_blank">
-                        <div class="link-icon steam-icon">
-                            <svg viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.624 0 11.999-5.375 11.999-12S18.603 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.453-.397.951-1.498 1.407-2.455 1.014zm8.555-11.285c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.662 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.252 0-2.265-1.014-2.265-2.265z"/></svg>
-                        </div>
-                        <span class="link-text">Steam</span>
-                    </a>
-                </div>
-
-                <div class="link-item-wrapper">
-                    <div class="chat-bubble">Tes sérieux·se la ? 💀</div>
-                    <a href="#" class="link-item" onclick="return false;">
-                        <div class="link-icon fansly-icon">
-                            <img src="https://i0.wp.com/creatorhub.fansly.com/wp-content/uploads/2025/04/FANSLY-Posts-48.png?fit=1080%2C1080&ssl=1&w=640" alt="Fansly" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
-                        </div>
-                        <span class="link-text">Fansly</span>
-                    </a>
-                </div>
-
-                <div class="link-item-wrapper">
-                    <a href="https://letterboxd.com/AshleyVLT/" class="link-item" target="_blank">
-                        <div class="link-icon letterboxd-icon">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Letterboxd_2023_logo.png/250px-Letterboxd_2023_logo.png" alt="Letterboxd" style="width: 100%; height: 100%; object-fit: cover; border-radius: 2px;">
-                        </div>
-                        <span class="link-text">Letterboxd</span>
-                    </a>
-                </div>
+        <a href="#" target="_blank" class="social-card card-letterboxd">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-title">letterboxd</div>
+                <div class="card-text">See what movies I've been watching and my latest reviews.</div>
             </div>
+            <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </a>
 
-            <div class="footer-text">
-                j'encule les UK et leur court supréme de con, jk rowling aussi cette conne, juste enfaite le jeux de mot fonctionne uniquement avec le .uk
+        <a href="#" target="_blank" class="social-card card-fansly apple-bubble">
+            <div class="card-glow"></div>
+            <div class="card-content">
+                <div class="card-title">fansly</div>
+                <div class="card-text">Exclusive content for subscribers only.</div>
             </div>
-        </div>
-
-        <div class="status-bar">
-            <div class="status-section">Ready</div>
-            <div class="status-section">7 liens</div>
-        </div>
+            <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </a>
     </div>
 
     <div class="media-player" id="mediaPlayer">
-        <div class="player-bar" id="playerBar">
-            <div class="player-title">🎵 Windows Media Player</div>
-            <button class="player-close" onclick="minimizeWindow('mediaPlayer')" style="background: linear-gradient(180deg, #F1F0E9 0%, #E2DFD5 86%, #C5C2B8 100%);">🗕</button>
-        </div>
-        <div class="player-content">
-            <div class="track-info">
-                <div class="track-title" id="trackTitle">slxughter - envy</div>
-                <div class="track-time">
-                    <span id="trackNumber">1/3</span> • 
-                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                </div>
+        <div class="player-content-minimal">
+            <div class="player-controls-minimal">
+                <button class="control-btn-minimal play-btn-main" onclick="playPause()" id="playBtn" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+                <button class="control-btn-minimal" onclick="nextTrack()" title="Next"><i class="fa-solid fa-forward-step"></i></button>
             </div>
-            <div class="player-controls">
-                <button class="control-btn" onclick="previousTrack()" title="Précédent">⏮️</button>
-                <button class="control-btn" onclick="playPause()" id="playBtn" title="Lecture/Pause">⏸️</button>
-                <button class="control-btn" onclick="stopMusic()" title="Stop">⏹️</button>
-                <button class="control-btn" onclick="nextTrack()" title="Suivant">⏭️</button>
-                <button class="control-btn" onclick="toggleShuffle()" id="shuffleBtn" title="Aléatoire">🔀</button>
-                <button class="control-btn" onclick="toggleRepeat()" id="repeatBtn" title="Répéter">🔁</button>
+            
+            <div class="track-info-minimal">
+                <div class="track-title-minimal" id="trackTitle">slxughter - envy</div>
             </div>
-            <div class="progress-container">
-                <input type="range" class="progress-bar" id="progressBar" min="0" max="100" value="0">
-            </div>
-            <div class="volume-controls">
-                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
-                <span class="volume-label" id="volumeIcon">🔊</span>
+            
+            <div style="display:none;">
+                <input type="range" id="progressBar" min="0" max="100" value="0">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+                <button id="shuffleBtn"></button>
+                <button id="repeatBtn"></button>
+                <input type="range" id="volumeSlider" min="0" max="100" value="70">
             </div>
         </div>
     </div>
 
-    <div class="window minimized" id="steamWindow" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 280px;">
-        <div class="title-bar" id="steamTitleBar">
-            <div class="title-bar-text">
-                <span style="margin-left: 8px;">🎮 Steam</span>
-            </div>
-            <div class="title-bar-controls">
-                <button class="title-bar-button minimize" onclick="minimizeWindow('steamWindow')"></button>
-                <button class="title-bar-button maximize"></button>
-                <button class="title-bar-button close" onclick="closeWindow('steamWindow')"></button>
-            </div>
-        </div>
-        <div class="window-content steam-minimal" style="padding: 15px; text-align: center;">
-            <div class="steam-game-card" onclick="toggleWindow('cookieWindow'); minimizeWindow('steamWindow');">
-                <div class="steam-game-icon">🍪</div>
-                <div class="steam-game-title">Cookie Clicker</div>
-                <div class="steam-game-status">▶ Jouer</div>
-            </div>
-            <a href="https://steamcommunity.com/id/AshleyVLT/" target="_blank" class="steam-profile-link">
-                Voir le profil Steam →
-            </a>
-        </div>
-        <div class="status-bar">
-            <div class="status-section">Online</div>
-            <div class="status-section">1 jeu</div>
-        </div>
-    </div>
 
-    <!-- Cookie Clicker Window -->
-    <div class="window minimized" id="cookieWindow" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px;">
-        <div class="title-bar" id="cookieTitleBar">
-            <div class="title-bar-text">
-                <span style="margin-left: 8px;">🍪 Cookie Clicker</span>
-            </div>
-            <div class="title-bar-controls">
-                <button class="title-bar-button minimize" onclick="minimizeWindow('cookieWindow')"></button>
-                <button class="title-bar-button maximize"></button>
-                <button class="title-bar-button close" onclick="closeWindow('cookieWindow')"></button>
-            </div>
-        </div>
-        <div class="window-content cookie-game" style="padding: 15px; text-align: center;">
-            <div class="cookie-header">
-                <div class="cookie-counter">🍪 <span id="cookieCount">0</span></div>
-                <div class="cookie-per-click">+<span id="clickPower">1</span> par clic</div>
-            </div>
-            <div class="cookie-btn" id="cookieBtn">🍪</div>
-            <div class="cookie-shop">
-                <div class="upgrade-row">
-                    <button class="cookie-upgrade" id="cursorUpgrade" onclick="buyCursor()">
-                        🖱️ Cursor (<span id="cursorCost">15</span> 🍪)
-                        <span class="upgrade-count" id="cursorCount">0</span>
-                    </button>
-                    <button class="cookie-upgrade" id="grandmaUpgrade" onclick="buyGrandma()">
-                        👵 Grandma (<span id="grandmaCost">100</span> 🍪)
-                        <span class="upgrade-count" id="grandmaCount">0</span>
-                    </button>
-                </div>
-                <div class="upgrade-row">
-                    <button class="cookie-upgrade" id="farmUpgrade" onclick="buyFarm()">
-                        🚜 Farm (<span id="farmCost">500</span> 🍪)
-                        <span class="upgrade-count" id="farmCount">0</span>
-                    </button>
-                    <button class="cookie-upgrade" id="clickUpgrade" onclick="buyClickPower()">
-                        💪 Power Click (<span id="clickCost">50</span> 🍪)
-                        <span class="upgrade-count" id="clickLevel">1</span>
-                    </button>
-                </div>
-            </div>
-            <div class="cookie-stats">
-                <div>+ <span id="cps">0</span> 🍪/sec</div>
-                <div class="cookie-achievements" id="achievements"></div>
-            </div>
-            <div class="golden-cookie" id="goldenCookie" onclick="clickGoldenCookie()">✨</div>
-        </div>
-        <div class="status-bar">
-            <div class="status-section">Clicking...</div>
-            <div class="status-section">Cookie Clicker</div>
-        </div>
-    </div>
 
     <audio id="audioPlayer" src="https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/music.mp3"></audio>
     <audio id="xpStartSound" src="https://github.com/AshleyVLT/MONKUMDRRRR/raw/main/XpStart.mp3"></audio>
@@ -1607,197 +1811,25 @@
             </div>
         </div>
     </div>
-
-    <!-- Popup Windows XP -->
-    <div class="xp-popup" id="xpPopup">
-        <div class="xp-popup-title-bar">
-            <div class="xp-popup-title">Message Important</div>
-            <button class="xp-popup-close" onclick="closeXPPopup()">✕</button>
-        </div>
-        <div class="xp-popup-content">
-            <img src="https://i.imgur.com/5gzStd7.png" alt="Notification">
-        </div>
-    </div>
-
-    <!-- Fenêtre Paramètres -->
-    <div class="settings-window" id="settingsWindow">
-        <div class="settings-title-bar">
-            <div class="settings-title">⚙️ Paramètres</div>
-            <button class="xp-popup-close" onclick="closeSettings()">✕</button>
-        </div>
-        <div class="settings-content">
-            <div class="settings-section">
-                <h3>🎨 Couleur des flocons</h3>
-                <div class="settings-option">
-                    <label>Couleur :</label>
-                    <input type="color" id="snowflakeColor" class="color-picker" value="#FFB6C1">
-                </div>
-            </div>
-
-            <div class="settings-section">
-                <h3>✨ Effets d'arrière-plan</h3>
-                <div class="settings-option">
-                    <label>Effet :</label>
-                    <select id="backgroundEffect" class="settings-select">
-                        <option value="none">Aucun</option>
-                        <option value="snowflakes">Flocons de neige</option>
-                        <option value="comets">Comètes</option>
-                    </select>
-                </div>
-                <div class="settings-option">
-                    <label>Couleur de l'effet :</label>
-                    <input type="color" id="effectColor" class="color-picker" value="#FFFFFF">
-                </div>
-            </div>
-
-            <div class="settings-section">
-                <h3>⌨️ Raccourcis clavier</h3>
-                <div class="keybind-list">
-                    <div class="keybind-item">
-                        <kbd>Ctrl</kbd> + <kbd>M</kbd>
-                        <span>Nommer le chat</span>
-                    </div>
-                    <div class="keybind-item">
-                        <kbd>Ctrl</kbd> + <kbd>Z</kbd>
-                        <span>Mode Zen (Laufey)</span>
-                    </div>
-                    <div class="keybind-item">
-                        <kbd>Entrée</kbd>
-                        <span>Valider le nom du chat</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Taskbar Windows XP -->
-    <div class="taskbar">
-        <div class="start-button">
-            <span style="font-size: 18px;">🪟</span>
-            <span>Start</span>
-        </div>
-        <div class="taskbar-items">
-            <div class="taskbar-item active" id="taskbar-mainWindow" onclick="toggleWindow('mainWindow')">
-                <span class="taskbar-item-icon">📁</span>
-                <span>Ashley - Profil</span>
-            </div>
-            <div class="taskbar-item active" id="taskbar-mediaPlayer" onclick="toggleWindow('mediaPlayer')">
-                <span class="taskbar-item-icon">🎵</span>
-                <span>Windows Media Player</span>
-            </div>
-            <div class="taskbar-item active" id="taskbar-steamWindow" onclick="toggleWindow('steamWindow')">
-                <span class="taskbar-item-icon">🎮</span>
-                <span>Steam</span>
-            </div>
-            <div class="taskbar-item active" id="taskbar-cookieWindow" onclick="toggleWindow('cookieWindow')">
-                <span class="taskbar-item-icon">🍪</span>
-                <span>Cookie Clicker</span>
-            </div>
-        </div>
-        <div class="settings-icon" onclick="toggleSettings()" title="Paramètres">⚙️</div>
-        <div class="taskbar-clock" id="taskbarClock">12:00</div>
-    </div>
-
     <script>
-        // ===== SÉQUENCE DE DÉMARRAGE WINDOWS XP =====
-        const biosLines = [
-            "    _   ___ _  _ _    _____   __    __  _   ___      ___   _",
-            "   /_\ / __| || | |  | __\ \ / /   / / | | | \ \    / / | | |",
-            "  / _ \\__ \ __ | |__| _| \ V /   / /  | |_| |\ \/\/ /| |_| |",
-            " /_/ \_\___/_||_|____|___| |_|   /_/    \___/  \_/\_/  \___/",
-            "",
-            "Award Modular BIOS v4.51PG, An Energy Star Ally",
-            "Copyright (C) 1984-2001, Award Software, Inc.",
-            "",
-            "PENTIUM-S CPU at 200MHz",
-            "Memory Test : 262144K OK",
-            "",
-            "Award Plug and Play BIOS Extension v1.0A",
-            "Detecting HDD Primary Master ... MAXTOR 6L040J2",
-            "Detecting HDD Primary Slave  ... None",
-            "Detecting HDD Secondary Master ... None",
-            "Detecting HDD Secondary Slave  ... None",
-            "",
-            "CMOS checksum error - Defaults loaded",
-            "Press F1 to continue, DEL to enter SETUP",
-            "",
-            "Starting MS-DOS...",
-            "HIMEM is testing extended memory...",
-            "HIMEM: Extended memory available",
-            "",
-            "Microsoft(R) MS-DOS(R) Version 6.22",
-            "           (C)Copyright Microsoft Corp 1981-1994.",
-            "",
-            "Starting Windows 95...",
-            "Starting Windows 98...",
-            "Starting Windows Millennium...",
-            "Starting Windows XP..."
-        ];
-
-        let currentLine = 0;
-        const biosText = document.getElementById('biosText');
-        const biosPost = document.getElementById('biosPost');
+        // ===== SÉQUENCE DE DÉMARRAGE MINIMALISTE =====
         const xpBootScreen = document.getElementById('xpBootScreen');
         const xpProgressFill = document.getElementById('xpProgressFill');
-        const xpBootText = document.getElementById('xpBootText');
 
-        // Afficher le texte BIOS ligne par ligne
-        function typeBiosText() {
-            if (currentLine < biosLines.length) {
-                const line = document.createElement('div');
-                line.textContent = biosLines[currentLine];
-                biosText.appendChild(line);
-                currentLine++;
-                
-                // Délai aléatoire entre chaque ligne pour effet réaliste
-                const delay = Math.random() * 100 + 50;
-                setTimeout(typeBiosText, delay);
-            } else {
-                // Fin du BIOS, attendre un peu puis passer à Windows XP
-                setTimeout(startWindowsBoot, 800);
-            }
-        }
-
-        // Démarrer l'écran Windows XP
-        function startWindowsBoot() {
-            biosPost.classList.add('hidden');
-            xpBootScreen.classList.remove('hidden');
-            
+        // Démarrer l'écran de chargement minimal
+        function startMinimalBoot() {
             // Animer la barre de progression
             let progress = 0;
             const progressInterval = setInterval(() => {
-                progress += Math.random() * 8 + 2;
+                progress += Math.random() * 15 + 5;
                 if (progress >= 100) {
                     progress = 100;
                     clearInterval(progressInterval);
-                    // Afficher "Cliquer pour continuer" au lieu de finir direct
-                    xpBootText.textContent = 'Chargement terminé';
-                    document.getElementById('xpClickContinue').style.display = 'block';
-                    xpBootScreen.addEventListener('click', finishBootWithSound);
+                    // Fin rapide après avoir atteint 100%
+                    setTimeout(finishBoot, 300);
                 }
                 xpProgressFill.style.width = progress + '%';
-                
-                // Changer le texte selon la progression
-                if (progress < 30) {
-                    xpBootText.textContent = 'Chargement du système...';
-                } else if (progress < 60) {
-                    xpBootText.textContent = 'Chargement des paramètres personnels...';
-                } else if (progress < 90) {
-                    xpBootText.textContent = 'Préparation du bureau...';
-                } else {
-                    xpBootText.textContent = 'Bienvenue...';
-                }
-            }, 400);
-        }
-
-        // Fin du boot avec son, déclenché par le clic
-        function finishBootWithSound() {
-            const xpStartSound = document.getElementById('xpStartSound');
-            if (xpStartSound) {
-                xpStartSound.play().catch(() => {});
-            }
-            finishBoot();
-            xpBootScreen.removeEventListener('click', finishBootWithSound);
+            }, 100);
         }
 
         // Fin du boot, afficher le site
@@ -1808,8 +1840,7 @@
 
         // Démarrer la séquence au chargement
         window.addEventListener('DOMContentLoaded', () => {
-            // Petit délai avant de commencer le POST
-            setTimeout(typeBiosText, 500);
+            setTimeout(startMinimalBoot, 200);
         });
 
         const a = document.getElementById('audioPlayer');
@@ -1855,7 +1886,7 @@
             }
             loadTrack(currentTrack);
             a.play();
-            p.textContent = '⏸️';
+            p.innerHTML = '<i class="fa-solid fa-pause"></i>';
         }
 
         // Piste précédente
@@ -1867,7 +1898,7 @@
             }
             loadTrack(currentTrack);
             a.play();
-            p.textContent = '⏸️';
+            p.innerHTML = '<i class="fa-solid fa-pause"></i>';
         }
 
         // Toggle Shuffle
@@ -1897,17 +1928,17 @@
         function playPause() {
             if (a.paused) {
                 a.play();
-                p.textContent = '⏸️';
+                p.innerHTML = '<i class="fa-solid fa-pause"></i>';
             } else {
                 a.pause();
-                p.textContent = '▶️';
+                p.innerHTML = '<i class="fa-solid fa-play"></i>';
             }
         }
 
         function stopMusic() {
             a.pause();
             a.currentTime = 0;
-            p.textContent = '▶️';
+            p.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
 
         function formatTime(s) {
@@ -1939,7 +1970,7 @@
         v.addEventListener('input', () => {
             const volume = v.value / 100;
             a.volume = volume;
-            
+
             // Changer l'icône selon le niveau de volume
             if (volume === 0) {
                 volumeIcon.textContent = '🔇';
@@ -1954,12 +1985,12 @@
         function makeDraggable(win, bar) {
             let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             let isDragging = false;
-            
+
             bar.onmousedown = dragMouseDown;
 
             function dragMouseDown(e) {
                 e.preventDefault();
-                
+
                 // Au premier drag, retirer bottom/right et convertir en top/left
                 if (!isDragging) {
                     const rect = win.getBoundingClientRect();
@@ -1969,7 +2000,7 @@
                     win.style.right = "auto";
                     isDragging = true;
                 }
-                
+
                 pos3 = e.clientX;
                 pos4 = e.clientY;
                 document.onmouseup = closeDragElement;
@@ -1992,231 +2023,10 @@
             }
         }
 
-        makeDraggable(document.getElementById('mainWindow'), document.getElementById('titleBar'));
-        makeDraggable(document.getElementById('mediaPlayer'), document.getElementById('playerBar'));
-        makeDraggable(document.getElementById('steamWindow'), document.getElementById('steamTitleBar'));
-        makeDraggable(document.getElementById('cookieWindow'), document.getElementById('cookieTitleBar'));
 
-        // ===== COOKIE CLICKER ENHANCED =====
-        let cookies = parseInt(localStorage.getItem('cookies')) || 0;
-        let clickPower = parseInt(localStorage.getItem('clickPower')) || 1;
-        
-        // Upgrade counts
-        let cursors = parseInt(localStorage.getItem('cursors')) || 0;
-        let grandmas = parseInt(localStorage.getItem('grandmas')) || 0;
-        let farms = parseInt(localStorage.getItem('farms')) || 0;
-        
-        // Upgrade costs
-        let cursorCost = parseInt(localStorage.getItem('cursorCost')) || 15;
-        let grandmaCost = parseInt(localStorage.getItem('grandmaCost')) || 100;
-        let farmCost = parseInt(localStorage.getItem('farmCost')) || 500;
-        let clickCost = parseInt(localStorage.getItem('clickCost')) || 50;
-
-        const cookieBtn = document.getElementById('cookieBtn');
-        const cookieCount = document.getElementById('cookieCount');
-        const cpsDisplay = document.getElementById('cps');
-        const clickPowerDisplay = document.getElementById('clickPower');
-        
-        // Upgrade buttons and displays
-        const cursorCountDisplay = document.getElementById('cursorCount');
-        const grandmaCountDisplay = document.getElementById('grandmaCount');
-        const farmCountDisplay = document.getElementById('farmCount');
-        const clickLevelDisplay = document.getElementById('clickLevel');
-        
-        const cursorCostDisplay = document.getElementById('cursorCost');
-        const grandmaCostDisplay = document.getElementById('grandmaCost');
-        const farmCostDisplay = document.getElementById('farmCost');
-        const clickCostDisplay = document.getElementById('clickCost');
-        
-        const cursorBtn = document.getElementById('cursorUpgrade');
-        const grandmaBtn = document.getElementById('grandmaUpgrade');
-        const farmBtn = document.getElementById('farmUpgrade');
-        const clickBtn = document.getElementById('clickUpgrade');
-        
-        const achievementsDisplay = document.getElementById('achievements');
-        const goldenCookie = document.getElementById('goldenCookie');
-
-        function calculateCPS() {
-            return cursors + (grandmas * 5) + (farms * 20);
-        }
-
-        function updateCookieDisplay() {
-            cookieCount.textContent = cookies;
-            cpsDisplay.textContent = calculateCPS();
-            clickPowerDisplay.textContent = clickPower;
-            
-            // Update counts
-            cursorCountDisplay.textContent = cursors;
-            grandmaCountDisplay.textContent = grandmas;
-            farmCountDisplay.textContent = farms;
-            clickLevelDisplay.textContent = clickPower;
-            
-            // Update costs
-            cursorCostDisplay.textContent = cursorCost;
-            grandmaCostDisplay.textContent = grandmaCost;
-            farmCostDisplay.textContent = farmCost;
-            clickCostDisplay.textContent = clickCost;
-            
-            // Disable buttons if not enough cookies
-            cursorBtn.disabled = cookies < cursorCost;
-            grandmaBtn.disabled = cookies < grandmaCost;
-            farmBtn.disabled = cookies < farmCost;
-            clickBtn.disabled = cookies < clickCost;
-            
-            checkAchievements();
-        }
-
-        function clickCookie() {
-            cookies += clickPower;
-            updateCookieDisplay();
-            saveCookies();
-            
-            // Visual feedback
-            cookieBtn.style.transform = 'scale(0.9)';
-            setTimeout(() => cookieBtn.style.transform = '', 100);
-        }
-
-        function buyCursor() {
-            if (cookies >= cursorCost) {
-                cookies -= cursorCost;
-                cursors++;
-                cursorCost = Math.floor(cursorCost * 1.15);
-                updateCookieDisplay();
-                saveCookies();
-            }
-        }
-
-        function buyGrandma() {
-            if (cookies >= grandmaCost) {
-                cookies -= grandmaCost;
-                grandmas++;
-                grandmaCost = Math.floor(grandmaCost * 1.15);
-                updateCookieDisplay();
-                saveCookies();
-            }
-        }
-
-        function buyFarm() {
-            if (cookies >= farmCost) {
-                cookies -= farmCost;
-                farms++;
-                farmCost = Math.floor(farmCost * 1.15);
-                updateCookieDisplay();
-                saveCookies();
-            }
-        }
-
-        function buyClickPower() {
-            if (cookies >= clickCost) {
-                cookies -= clickCost;
-                clickPower++;
-                clickCost = Math.floor(clickCost * 1.5);
-                updateCookieDisplay();
-                saveCookies();
-            }
-        }
-
-        function clickGoldenCookie() {
-            const bonus = Math.floor(cookies * 0.1) + 100;
-            cookies += bonus;
-            goldenCookie.classList.remove('show');
-            showAchievement(`✨ Golden Cookie! +${bonus} 🍪`);
-            updateCookieDisplay();
-            saveCookies();
-            scheduleGoldenCookie();
-        }
-
-        function scheduleGoldenCookie() {
-            const delay = Math.random() * 30000 + 30000; // 30-60 seconds
-            setTimeout(() => {
-                goldenCookie.classList.add('show');
-                // Hide after 10 seconds if not clicked
-                setTimeout(() => {
-                    goldenCookie.classList.remove('show');
-                    scheduleGoldenCookie();
-                }, 10000);
-            }, delay);
-        }
-
-        function checkAchievements() {
-            const cps = calculateCPS();
-            let achievement = '';
-            
-            if (cookies >= 1000 && cookies < 1001) achievement = '🏆 1000 cookies!';
-            else if (cookies >= 10000 && cookies < 10001) achievement = '🏆 10000 cookies!';
-            else if (cps >= 10 && cps < 11) achievement = '⚡ 10 CPS!';
-            else if (cps >= 100 && cps < 101) achievement = '⚡ 100 CPS!';
-            else if (grandmas >= 10 && grandmas < 11) achievement = '👵 Grandma army!';
-            else if (farms >= 5 && farms < 6) achievement = '🚜 Farm tycoon!';
-            
-            if (achievement) showAchievement(achievement);
-        }
-
-        function showAchievement(text) {
-            achievementsDisplay.textContent = text;
-            setTimeout(() => {
-                achievementsDisplay.textContent = '';
-            }, 3000);
-        }
-
-        function saveCookies() {
-            localStorage.setItem('cookies', cookies);
-            localStorage.setItem('clickPower', clickPower);
-            localStorage.setItem('cursors', cursors);
-            localStorage.setItem('grandmas', grandmas);
-            localStorage.setItem('farms', farms);
-            localStorage.setItem('cursorCost', cursorCost);
-            localStorage.setItem('grandmaCost', grandmaCost);
-            localStorage.setItem('farmCost', farmCost);
-            localStorage.setItem('clickCost', clickCost);
-        }
-
-        cookieBtn.addEventListener('click', clickCookie);
-
-        // Auto-clicker loop
-        setInterval(() => {
-            const cps = calculateCPS();
-            if (cps > 0) {
-                cookies += cps;
-                updateCookieDisplay();
-                saveCookies();
-            }
-        }, 1000);
-
-        // Initialize display and start golden cookie
-        updateCookieDisplay();
-        scheduleGoldenCookie();
-
-        // Flocons de neige roses qui suivent la souris
-        document.addEventListener('mousemove', (e) => {
-            createSnowflake(e.clientX, e.clientY);
-        });
-
-        function createSnowflake(x, y) {
-            const snowflake = document.createElement('div');
-            snowflake.className = 'snowflake';
-            snowflake.textContent = '❄';
-            snowflake.style.left = x + 'px';
-            snowflake.style.top = y + 'px';
-            
-            // Durée aléatoire pour la chute
-            const duration = Math.random() * 2 + 2;
-            snowflake.style.animationDuration = duration + 's';
-            
-            // Taille aléatoire
-            const size = Math.random() * 0.5 + 0.8;
-            snowflake.style.fontSize = size + 'em';
-            
-            document.body.appendChild(snowflake);
-            
-            // Supprimer le flocon après l'animation
-            setTimeout(() => {
-                snowflake.remove();
-            }, duration * 1000);
-        }
 
         // Chat oneko qui suit la souris
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const nekoEl = document.createElement("div");
             nekoEl.id = "oneko";
             nekoEl.style.width = "32px";
@@ -2304,7 +2114,7 @@
             function updateNametagPosition() {
                 const nametag = document.getElementById('neko-nametag');
                 const catName = localStorage.getItem('catName');
-                
+
                 if (catName) {
                     nametag.textContent = catName;
                     nametag.style.display = 'block';
@@ -2323,7 +2133,7 @@
         });
 
         // Gestion des commandes secrètes
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             // Ctrl+M : Nommer le chat
             if (e.ctrlKey && e.key === 'm') {
                 e.preventDefault();
@@ -2341,10 +2151,10 @@
             const popup = document.getElementById('namePopup');
             const input = document.getElementById('catNameInput');
             const currentName = localStorage.getItem('catName') || '';
-            
+
             input.value = currentName;
             popup.classList.add('show');
-            
+
             // Focus sur l'input après l'animation
             setTimeout(() => input.focus(), 100);
         }
@@ -2359,7 +2169,7 @@
         function saveCatName() {
             const input = document.getElementById('catNameInput');
             const name = input.value.trim();
-            
+
             if (name) {
                 localStorage.setItem('catName', name);
                 const nametag = document.getElementById('neko-nametag');
@@ -2370,14 +2180,14 @@
         }
 
         // Permettre de valider avec Entrée
-        document.getElementById('catNameInput').addEventListener('keypress', function(e) {
+        document.getElementById('catNameInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 saveCatName();
             }
         });
 
         // Fermer la popup en cliquant sur l'overlay
-        document.getElementById('namePopup').addEventListener('click', function(e) {
+        document.getElementById('namePopup').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeNamePopup();
             }
@@ -2389,32 +2199,32 @@
         // Toggle Mode Zen
         function toggleZenMode() {
             isZenMode = !isZenMode;
-            
+
             if (isZenMode) {
                 // Activer le mode zen
                 document.body.classList.add('zen-mode');
                 localStorage.setItem('zenMode', 'true');
-                
+
                 // Charger Laufey automatiquement (piste 3, index 2)
                 loadTrack(2);
-                
+
                 console.log('🧘‍♀️ Mode Zen activé - Laufey chargée');
             } else {
                 // Désactiver le mode zen
                 document.body.classList.remove('zen-mode');
                 localStorage.setItem('zenMode', 'false');
-                
+
                 console.log('🔴 Mode Zen désactivé');
             }
         }
 
         // Charger le mode zen au démarrage
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const savedZenMode = localStorage.getItem('zenMode');
             if (savedZenMode === 'true') {
                 isZenMode = true;
                 document.body.classList.add('zen-mode');
-                
+
                 // Charger Laufey automatiquement
                 setTimeout(() => {
                     loadTrack(2);
@@ -2422,205 +2232,7 @@
             }
         });
 
-        // ===== POPUP WINDOWS XP =====
-        // Afficher la popup
-        function showXPPopup() {
-            const popup = document.getElementById('xpPopup');
-            popup.classList.add('show');
-        }
-
-        // Fermer la popup
-        function closeXPPopup() {
-            const popup = document.getElementById('xpPopup');
-            popup.classList.remove('show');
-        }
-
-        // Afficher la popup une seule fois après 1 minute
-        setTimeout(() => {
-            showXPPopup();
-        }, 60000);
-
-        // ===== GESTION DES FENÊTRES ET TASKBAR =====
-        // Minimiser une fenêtre
-        function minimizeWindow(windowId) {
-            const win = document.getElementById(windowId);
-            const taskbarItem = document.getElementById('taskbar-' + windowId);
-            
-            win.classList.add('minimized');
-            taskbarItem.classList.remove('active');
-        }
-
-        // Fermer une fenêtre (la masque complètement)
-        function closeWindow(windowId) {
-            const win = document.getElementById(windowId);
-            const taskbarItem = document.getElementById('taskbar-' + windowId);
-            
-            win.classList.add('minimized');
-            taskbarItem.style.display = 'none';
-        }
-
-        // Toggle une fenêtre depuis la taskbar
-        function toggleWindow(windowId) {
-            const win = document.getElementById(windowId);
-            const taskbarItem = document.getElementById('taskbar-' + windowId);
-            
-            if (win.classList.contains('minimized')) {
-                // Restaurer la fenêtre
-                win.classList.remove('minimized');
-                taskbarItem.classList.add('active');
-                taskbarItem.style.display = 'flex';
-            } else {
-                // Minimiser la fenêtre
-                win.classList.add('minimized');
-                taskbarItem.classList.remove('active');
-            }
-        }
-
-        // Mettre à jour l'horloge de la taskbar
-        function updateClock() {
-            const clock = document.getElementById('taskbarClock');
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            clock.textContent = `${hours}:${minutes}`;
-        }
-
-        // Mettre à jour l'horloge toutes les secondes
-        setInterval(updateClock, 1000);
-        updateClock(); // Initialiser l'horloge
-
-        // ===== PARAMÈTRES =====
-        // Toggle fenêtre paramètres
-        function toggleSettings() {
-            const settingsWin = document.getElementById('settingsWindow');
-            settingsWin.classList.toggle('show');
-        }
-
-        // Fermer paramètres
-        function closeSettings() {
-            document.getElementById('settingsWindow').classList.remove('show');
-        }
-
-        // Charger les paramètres depuis localStorage
-        function loadSettings() {
-            const snowflakeColor = localStorage.getItem('snowflakeColor') || '#FFB6C1';
-            const backgroundEffect = localStorage.getItem('backgroundEffect') || 'none';
-            const effectColor = localStorage.getItem('effectColor') || '#FFFFFF';
-            
-            document.getElementById('snowflakeColor').value = snowflakeColor;
-            document.getElementById('backgroundEffect').value = backgroundEffect;
-            document.getElementById('effectColor').value = effectColor;
-            
-            // Appliquer les effets
-            applyBackgroundEffect(backgroundEffect, effectColor);
-        }
-
-        // Sauvegarder et appliquer la couleur des flocons
-        document.getElementById('snowflakeColor').addEventListener('change', (e) => {
-            localStorage.setItem('snowflakeColor', e.target.value);
-        });
-
-        // Sauvegarder et appliquer l'effet d'arrière-plan
-        document.getElementById('backgroundEffect').addEventListener('change', (e) => {
-            const effect = e.target.value;
-            const color = document.getElementById('effectColor').value;
-            localStorage.setItem('backgroundEffect', effect);
-            applyBackgroundEffect(effect, color);
-        });
-
-        // Sauvegarder et appliquer la couleur de l'effet
-        document.getElementById('effectColor').addEventListener('change', (e) => {
-            const effect = document.getElementById('backgroundEffect').value;
-            localStorage.setItem('effectColor', e.target.value);
-            applyBackgroundEffect(effect, e.target.value);
-        });
-
-        // Variables pour les effets d'arrière-plan
-        let backgroundEffectInterval = null;
-
-        // Appliquer l'effet d'arrière-plan
-        function applyBackgroundEffect(effect, color) {
-            // Arrêter l'effet précédent
-            if (backgroundEffectInterval) {
-                clearInterval(backgroundEffectInterval);
-                backgroundEffectInterval = null;
-            }
-            
-            // Supprimer tous les effets existants
-            document.querySelectorAll('.comet, .snowflake.background-effect').forEach(el => el.remove());
-            
-            if (effect === 'comets') {
-                // Créer des comètes toutes les 3 secondes
-                backgroundEffectInterval = setInterval(() => createComet(color), 3000);
-            } else if (effect === 'snowflakes') {
-                // Créer des flocons de neige toutes les 500ms
-                backgroundEffectInterval = setInterval(() => createBackgroundSnowflake(color), 500);
-            }
-        }
-
-        // Créer une comète
-        function createComet(color) {
-            const comet = document.createElement('div');
-            comet.className = 'comet';
-            comet.style.left = Math.random() * window.innerWidth + 'px';
-            comet.style.top = '-100px';
-            comet.style.background = `linear-gradient(180deg, transparent, ${color})`;
-            
-            const duration = Math.random() * 2 + 1;
-            comet.style.animationDuration = duration + 's';
-            
-            document.body.appendChild(comet);
-            
-            setTimeout(() => comet.remove(), duration * 1000);
-        }
-
-        // Créer un flocon de neige d'arrière-plan
-        function createBackgroundSnowflake(color) {
-            const snowflake = document.createElement('div');
-            snowflake.className = 'snowflake background-effect';
-            snowflake.textContent = '❄';
-            snowflake.style.left = Math.random() * window.innerWidth + 'px';
-            snowflake.style.top = '-20px';
-            snowflake.style.color = color;
-            
-            const duration = Math.random() * 3 + 4;
-            snowflake.style.animationDuration = duration + 's';
-            
-            const size = Math.random() * 0.5 + 0.5;
-            snowflake.style.fontSize = size + 'em';
-            
-            document.body.appendChild(snowflake);
-            
-            setTimeout(() => snowflake.remove(), duration * 1000);
-        }
-
-        // Modifier la fonction createSnowflake pour utiliser la couleur des paramètres
-        const originalCreateSnowflake = createSnowflake;
-        createSnowflake = function(x, y) {
-            const snowflake = document.createElement('div');
-            snowflake.className = 'snowflake';
-            snowflake.textContent = '❄';
-            snowflake.style.left = x + 'px';
-            snowflake.style.top = y + 'px';
-            
-            // Utiliser la couleur des paramètres
-            const savedColor = localStorage.getItem('snowflakeColor') || '#FFB6C1';
-            snowflake.style.color = savedColor;
-            snowflake.style.textShadow = `0 0 5px ${savedColor}`;
-            
-            const duration = Math.random() * 2 + 2;
-            snowflake.style.animationDuration = duration + 's';
-            
-            const size = Math.random() * 0.5 + 0.8;
-            snowflake.style.fontSize = size + 'em';
-            
-            document.body.appendChild(snowflake);
-            
-            setTimeout(() => snowflake.remove(), duration * 1000);
-        };
-
-        // Charger les paramètres au démarrage
-        loadSettings();
     </script>
 </body>
+
 </html>
